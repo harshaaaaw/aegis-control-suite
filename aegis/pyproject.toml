@@ -35,6 +35,36 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+# B008 (Depends in default arg) is the standard FastAPI pattern; not a bug here.
+extend-ignore = ["B008"]
+extend-select = ["E", "F", "I", "BLE", "SIM", "RUF", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["BLE001"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+ignore_missing_imports = true
+# Third-party engines (evalforge / agent_sentinel / run_replay) ship no type
+# stubs; treat their untyped surfaces as dynamic rather than failing the gate.
+[[tool.mypy.overrides]]
+module = ["evalforge", "agent_sentinel", "run_replay", "run_replay.models"]
+ignore_missing_imports = true
+allow_untyped_defs = true
+disable_error_code = ["attr-defined", "import-untyped", "no-redef"]
+# SQLAlchemy ORM model files: mypy cannot resolve Column descriptors without the
+# (deprecated for 2.0) plugin. Scope the strict gate to business logic; the
+# runtime behaviour is covered by the test suite.
+[[tool.mypy.overrides]]
+module = ["aegis.spine", "causa.*"]
+disable_error_code = ["valid-type", "misc", "return-value", "arg-type", "assignment", "index", "union-attr"]
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]

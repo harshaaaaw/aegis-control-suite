@@ -8,7 +8,6 @@ from pathlib import Path
 import typer
 
 from . import Causala
-from .service import CausalaSubsystem
 
 app = typer.Typer(help="CAUSALA: causal-inference retrieval over a compiled causal layer.")
 
@@ -70,7 +69,8 @@ def path(from_: str = typer.Option(..., "--from"), to: str = typer.Option(..., "
 @app.command("conflicts")
 def conflicts(tenant: str = "local", db: str = typer.Option(None, "--db")):
     out = _engine(db, tenant).flag_conflicts(tenant)
-    typer.echo(json.dumps([{"cause": a, "effect_a": b, "effect_b": c} for a, b, c in out], indent=2))
+    rows = [{"cause": a, "effect_a": b, "effect_b": c} for a, b, c in out]
+    typer.echo(json.dumps(rows, indent=2))
 
 
 if __name__ == "__main__":

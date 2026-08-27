@@ -17,16 +17,16 @@ Design (anti-slop + IR-correct):
 from __future__ import annotations
 
 import hashlib
+import itertools
 import time
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from sqlalchemy import (Column, Float, Integer, String, Text, Boolean, create_engine)
-from sqlalchemy.orm import declarative_base, sessionmaker
-
 from aegis.security import get_logger
+from sqlalchemy import Boolean, Column, Float, Integer, String, Text, create_engine
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 log = get_logger("causala.engine")
 
@@ -66,7 +66,8 @@ class CausalAnswer:
     contested: bool
 
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 
 class _ClaimRow(Base):
@@ -206,7 +207,7 @@ class Causala:
             return []
         if len(nodes) - 1 > max_hops:
             return []
-        return [g.get_edge_data(a, b)["claim"] for a, b in zip(nodes, nodes[1:])]
+        return [g.get_edge_data(a, b)["claim"] for a, b in itertools.pairwise(nodes)]
 
     def retrieve_ancestors(self, effect: str, tenant_id: str,
                            max_hops: int = 6) -> list[CausalClaim]:
@@ -229,7 +230,7 @@ class Causala:
                 for p in nx.all_simple_paths(g, src, effect):
                     if len(p) - 1 > max_hops:
                         continue
-                    for a, b in zip(p, p[1:]):
+                    for a, b in itertools.pairwise(p):
                         key = (a, b)
                         if key in seen:
                             continue

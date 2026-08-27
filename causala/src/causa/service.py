@@ -7,7 +7,7 @@ control plane: agents ask CAUSALA 'why?' and get citation-backed causal answers.
 """
 from __future__ import annotations
 
-from aegis.backbone import ControlEvent, EventBus, Subsystem, register_subsystem
+from aegis.backbone import ControlEvent, EventBus, register_subsystem
 from aegis.security import get_logger
 
 from . import Causala, CausalAnswer

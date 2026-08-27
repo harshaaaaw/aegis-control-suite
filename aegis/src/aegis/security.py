@@ -8,12 +8,9 @@ secret policy enforces a minimum entropy so we never accept an 11-byte key
 from __future__ import annotations
 
 import ipaddress
-import json
 import logging
 import os
 import time
-import uuid
-from dataclasses import dataclass
 
 import jwt
 
@@ -88,7 +85,7 @@ def is_ssrf_safe(url: str) -> bool:
     except OSError:
         return False  # unresolved / malformed -> deny by default
     for info in infos:
-        addr = info[4][0].split("%")[0]  # strip IPv6 zone
+        addr = str(info[4][0]).split("%")[0]  # strip IPv6 zone
         try:
             ipa = ipaddress.ip_address(addr)
         except ValueError:

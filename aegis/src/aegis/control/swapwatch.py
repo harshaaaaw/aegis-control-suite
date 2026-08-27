@@ -10,8 +10,9 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
-from ..backbone import ControlEvent, EventBus, Subsystem, register_subsystem
+from ..backbone import ControlEvent, EventBus, register_subsystem
 
 
 @dataclass
@@ -36,7 +37,8 @@ class SwapWatch:
     def handle(self, event: ControlEvent) -> None:
         # React to gate certifications: snapshot the certified outputs as baseline.
         if event.kind == "gate_certified":
-            self._snapshot(event.run_id, event.payload.get("outputs", {}))
+            outputs: dict[str, Any] = event.payload.get("outputs") or {}
+            self._snapshot(event.run_id or "unknown", outputs)
 
     def _snapshot(self, run_id: str, outputs: dict) -> None:
         with open(self._ledger, "a", encoding="utf-8") as f:

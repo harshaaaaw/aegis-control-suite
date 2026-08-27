@@ -8,16 +8,17 @@ Design (anti-slop invariants enforced):
 """
 from __future__ import annotations
 
-import secrets
 import time
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
 
-from sqlalchemy import (Column, Integer, String, Text, create_engine)
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-Base = declarative_base()
+
+class Base(DeclarativeBase):
+    pass
 
 
 class RunRow(Base):

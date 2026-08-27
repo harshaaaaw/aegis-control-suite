@@ -7,11 +7,11 @@ golden set, closing the loop: production failures become regression tests.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
 from pathlib import Path
 
-from ..backbone import ControlEvent, EventBus, Subsystem, register_subsystem
-from evalforge import EvalCase  # type: ignore  (evalforge installed)
+from evalforge import EvalCase  # type: ignore
+
+from ..backbone import ControlEvent, EventBus, register_subsystem
 
 
 class SimRLFactory:

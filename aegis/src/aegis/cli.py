@@ -20,7 +20,7 @@ from pathlib import Path
 
 import typer
 
-from .backbone import ControlEvent, EventBus, reset_registry
+from .backbone import EventBus, reset_registry
 from .control import plane
 from .control.swapwatch import SwapWatch
 from .gate import GateRequest, ShipGate
@@ -41,7 +41,7 @@ def _ephemeral() -> tuple[Spine, str]:
 def _load_run(path: str) -> list[dict]:
     # Resolve so POSIX-style and Windows relative paths both work for consumers.
     p = Path(path).expanduser().resolve()
-    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    return [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
 @app.command()
@@ -51,7 +51,7 @@ def certify(run_file: str, tenant: str = "local", agent: str = "cli-agent",
     spine, state_dir = _ephemeral()
     run_id = spine.begin_run(agent_name=agent, tenant_id=tenant, idempotency_key=run_file)
     # copy the user's steps into the run-replay store the gate reads
-    from run_replay import Recorder, RunMeta, StepKind
+    from run_replay import Recorder, RunMeta, StepKind  # type: ignore[import-untyped, attr-defined]
     rec = Recorder(state_dir=state_dir, meta=RunMeta(run_id=run_id, agent_name=agent))
     for step in _load_run(run_file):
         kind_raw = step.get("kind", "MODEL_CALL")
@@ -85,7 +85,7 @@ def verify(verdict_id: str, tenant: str = "local"):
 @app.command()
 def drift(run_id: str, baseline: str, live: str):
     """SwapWatch: compare a live run's outputs to its certified baseline."""
-    spine, state_dir = _ephemeral()
+    _spine, state_dir = _ephemeral()
     sw = SwapWatch(state_dir)
     base = _load_run(baseline)[-1].get("out", {})
     liv = _load_run(live)[-1].get("out", {})
@@ -103,7 +103,10 @@ def posture(tenant: str = "local"):
     bus = EventBus()
     ctrl = plane.ControlPlane(spine, state_dir=tempfile.mkdtemp(prefix="aegis-"))
     ctrl.boot(bus)
-    typer.echo(json.dumps(ctrl.get("panes").posture(ctrl), indent=2))
+    panes = ctrl.get("panes")
+    if not isinstance(panes, plane.Panes):
+        raise TypeError("panes room must be registered before posture")
+    typer.echo(json.dumps(panes.posture(ctrl), indent=2))
     reset_registry()
 
 
@@ -117,8 +120,9 @@ def ssrf(url: str):
 def server(port: int = 8000):
     """Serve the HTTP API locally (needs a real secret; see SECURITY.md)."""
     import uvicorn
+
     from .main import build_app
-    spine, state_dir = _ephemeral()
+    _spine, state_dir = _ephemeral()
     app_obj = build_app(db_path=":memory:", state_dir=state_dir, jwt_secret="0" * 32)
     uvicorn.run(app_obj, host="127.0.0.1", port=port)
 

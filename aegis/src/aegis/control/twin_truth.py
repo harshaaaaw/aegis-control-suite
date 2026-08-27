@@ -10,7 +10,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from ..backbone import ControlEvent, EventBus, Subsystem, register_subsystem
+from ..backbone import ControlEvent, EventBus, register_subsystem
 
 
 @dataclass
@@ -39,7 +39,6 @@ class TwinTruth:
         """effect maps 'var->metric' to a coefficient. Linear, additive."""
         delta = 0.0
         for var, val in decision_vars.items():
-            coeff = effect.get(f"{var}->{list(effect.values()) and next(iter(effect))}", 0.0)
             # match coefficient by the var name prefix in keys like 'discount->conversion'
             for k, c in effect.items():
                 if k.startswith(f"{var}->"):

@@ -11,19 +11,22 @@ Design:
 """
 from __future__ import annotations
 
-import time
-from pathlib import Path
-
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
-from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, generate_latest
 from slowapi import Limiter
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 
 from .gate import GateRequest, ShipGate
-from .security import (AuthError, WeakSecretError, get_logger, is_ssrf_safe,
-                       verify_token, require_strong_secret)
+from .observability import record_gate_eval, record_run_begun
+from .security import (
+    AuthError,
+    WeakSecretError,
+    get_logger,
+    require_strong_secret,
+    verify_token,
+)
 from .spine import Spine, SpineConfig
 
 log = get_logger("aegis.api")
@@ -66,6 +69,7 @@ def build_app(db_path: str, state_dir: str, jwt_secret: str) -> FastAPI:
         if not agent_name:
             raise HTTPException(status_code=400, detail="agent_name required")
         RUNS_BEGUN.labels(tenant).inc()
+        record_run_begun(tenant)
         run_id = spine.begin_run(agent_name=agent_name, tenant_id=tenant,
                                  idempotency_key=idempotency_key)
         log.info("run_begin", extra={"tenant": tenant, "run_id": run_id})
@@ -81,8 +85,10 @@ def build_app(db_path: str, state_dir: str, jwt_secret: str) -> FastAPI:
             run_id=body["run_id"], agent_name=body.get("agent_name", "unknown"),
             tenant_id=tenant, candidate_summary=body.get("candidate_summary", ""))
         verdict = gate.evaluate(req)
-        if verdict.decision == "BLOCK":
+        blocked = verdict.decision == "BLOCK"
+        if blocked:
             GATE_BLOCKS.labels(tenant).inc()
+        record_gate_eval(tenant, blocked)
         log.info("gate_eval", extra={"tenant": tenant,
                                      "verdict_id": verdict.verdict_id,
                                      "decision": verdict.decision})

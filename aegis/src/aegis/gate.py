@@ -18,11 +18,16 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from agent_sentinel import Sentinel, ToolCall, ToolResult, TurnContext
-from evalforge import EvalCase, EvalRunner, GoldenSet
-from run_replay import Replayer, StepKind
+from agent_sentinel import (  # type: ignore[import-untyped, attr-defined]
+    Sentinel,
+    ToolCall,
+    ToolResult,
+    TurnContext,
+)
+from evalforge import EvalCase, EvalRunner, GoldenSet  # type: ignore[import-untyped, attr-defined]
+from run_replay import Replayer, StepKind  # type: ignore[import-untyped, attr-defined]
 
-from .spine import Spine, SpineError
+from .spine import Spine
 
 
 class GateError(Exception):
@@ -67,20 +72,22 @@ class ShipGate:
         # NOTE: constructing a Recorder truncates the run file, so we read the
         # JSONL directly (mirrors Recorder.load_run without the side effect).
         path = f"{self.state_dir}/runs/{run_id}.jsonl"
-        from run_replay.models import StepEvent, StepKind
         import json as _json
+
+        from run_replay.models import StepEvent, StepKind
         try:
-            lines = open(path, encoding="utf-8").read().splitlines()
+            with open(path, encoding="utf-8") as fh:
+                lines = fh.read().splitlines()
         except FileNotFoundError as e:
             raise GateError(f"run {run_id!r} not found") from e
         events = []
         for raw in lines[1:]:
-            e = _json.loads(raw)
+            ev = _json.loads(raw)
             events.append(StepEvent(
-                idx=e["idx"], kind=StepKind(e["kind"]), name=e["name"],
-                input_digest=e["in_d"], output_digest=e["out_d"],
-                input_data=e.get("in"), output_data=e.get("out"),
-                state_hash=e.get("state", ""), wall_ms=e.get("ms", 0.0),
+                idx=ev["idx"], kind=StepKind(ev["kind"]), name=ev["name"],
+                input_digest=ev["in_d"], output_digest=ev["out_d"],
+                input_data=ev.get("in"), output_data=ev.get("out"),
+                state_hash=ev.get("state", ""), wall_ms=ev.get("ms", 0.0),
             ))
         return events
 
@@ -174,7 +181,8 @@ class ShipGate:
         ledger = f"{self.state_dir}/verdicts.jsonl"
         prev = ""
         if Path(ledger).exists():
-            last = open(ledger, encoding="utf-8").read().splitlines()[-1]
+            with open(ledger, encoding="utf-8") as fh:
+                last = fh.read().splitlines()[-1]
             prev = hashlib.sha256(last.encode()).hexdigest()[:32]
         record = {
             "verdict_id": v.verdict_id,
@@ -202,7 +210,8 @@ class ShipGate:
         """
         ledger = f"{self.state_dir}/verdicts.jsonl"
         try:
-            lines = open(ledger, encoding="utf-8").read().splitlines()
+            with open(ledger, encoding="utf-8") as fh:
+                lines = fh.read().splitlines()
         except FileNotFoundError:
             return False, None
         # verify chain integrity end-to-end

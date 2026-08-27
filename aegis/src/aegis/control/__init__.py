@@ -1,6 +1,13 @@
 """Control-plane subsystems package."""
 from __future__ import annotations
 
-__all__ = ["swapwatch", "roi_attest", "governed_memory",
-           "contract_intel", "twin_truth", "causal_decisions",
-           "sim_rl_factory", "autonomous_ops"]
+__all__ = [
+           "autonomous_ops",
+           "causal_decisions",
+           "contract_intel",
+           "governed_memory",
+           "roi_attest",
+           "sim_rl_factory",
+           "swapwatch",
+           "twin_truth",
+]

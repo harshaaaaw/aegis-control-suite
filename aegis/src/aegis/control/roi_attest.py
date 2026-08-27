@@ -12,7 +12,7 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
-from ..backbone import ControlEvent, EventBus, Subsystem, register_subsystem
+from ..backbone import ControlEvent, EventBus, register_subsystem
 from ..spine import Spine
 
 
@@ -48,7 +48,7 @@ class ROIAttest:
         # record on an explicit roi_record event
         if event.kind == "roi_record":
             p = event.payload
-            self.record_decision(p["decision_id"], event.tenant_id,
+            self.record_decision(p["decision_id"], event.tenant_id or "unknown",
                                  p["cost_usd"], p["measured_benefit_usd"], p["basis"])
 
     def record_decision(self, decision_id: str, tenant_id: str,

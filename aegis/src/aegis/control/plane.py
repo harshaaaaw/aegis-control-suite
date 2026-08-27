@@ -7,20 +7,17 @@ ROI) so an operator can see the whole control plane in one place.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 from pathlib import Path
 
-from ..backbone import ControlEvent, EventBus, Subsystem, register_subsystem
-from . import (autonomous_ops, causal_decisions, contract_intel, governed_memory,
-              roi_attest, sim_rl_factory, swapwatch, twin_truth)
-from .swapwatch import SwapWatch
-from .roi_attest import ROIAttest
-from .governed_memory import GovernedMemory
-from .contract_intel import ContractIntel
-from .twin_truth import TwinTruth
-from .causal_decisions import CausalDecisions
-from .sim_rl_factory import SimRLFactory
+from ..backbone import EventBus, Subsystem, register_subsystem
 from .autonomous_ops import AutonomousOps
+from .causal_decisions import CausalDecisions
+from .contract_intel import ContractIntel
+from .governed_memory import GovernedMemory
+from .roi_attest import ROIAttest
+from .sim_rl_factory import SimRLFactory
+from .swapwatch import SwapWatch
+from .twin_truth import TwinTruth
 
 
 class Panes:
@@ -32,13 +29,17 @@ class Panes:
     def register(self, bus: EventBus, spine) -> None:
         register_subsystem(self)
 
-    def posture(self, control: "ControlPlane") -> dict:
+    def handle(self, event) -> None:
+        # Panes is a read-only aggregator; it does not react to bus events.
+        return None
+
+    def posture(self, control: ControlPlane) -> dict:
         out: dict[str, object] = {}
         ops = control.get("autonomous_ops")
-        if ops is not None:
+        if isinstance(ops, AutonomousOps):
             out["trust_tiers"] = dict(ops._tiers)
         sw = control.get("swapwatch")
-        if sw is not None:
+        if isinstance(sw, SwapWatch):
             drifts = 0
             if Path(sw._ledger).exists():
                 for raw in Path(sw._ledger).read_text(encoding="utf-8").splitlines():
@@ -90,6 +91,11 @@ class _GateRoom:
 
     def register(self, bus: EventBus, spine) -> None:
         register_subsystem(self)
+
+    def handle(self, event) -> None:
+        # The gate room reacts to gate_certified (no-op here; verdicts are
+        # created via evaluate()). Present so it satisfies the Subsystem protocol.
+        return None
 
     def evaluate(self, run_id, agent_name, tenant_id, candidate_summary):
         from ..gate import GateRequest

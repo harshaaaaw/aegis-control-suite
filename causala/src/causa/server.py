@@ -14,19 +14,16 @@ Endpoints (all require `Bearer` JWT; tenant comes from the verified token):
 """
 from __future__ import annotations
 
-import os
-from pathlib import Path
-
-from fastapi import FastAPI, Depends, HTTPException, Request
+from aegis.security import AuthError, WeakSecretError, get_logger, verify_token
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 
-from aegis.security import get_logger, verify_token, WeakSecretError, AuthError
-
 from . import Causala
+from .observability import record_conflict, record_ingest, record_lookup
 
 
 class IngestReq(BaseModel):
@@ -81,12 +78,14 @@ def get_app(db_path: str, jwt_secret: str, enable_rate_limit: bool = True) -> Fa
     async def ingest(request: Request, body: IngestReq, tenant: str = Depends(tenant_of)):
         cid = engine.ingest_claim(body.cause, body.effect, body.confidence,
                                   body.source, tenant, body.mechanism)
+        record_ingest(tenant)
         return {"claim_id": cid, "tenant": tenant}
 
     @app.post("/api/v1/causal/explain")
     @limiter.limit("30/minute")
     async def explain(request: Request, body: KeyReq, tenant: str = Depends(tenant_of)):
         ans = engine.explain_effect(body.key, tenant)
+        record_lookup(tenant)
         return {"cause": ans.cause, "effect": ans.effect, "confidence": ans.confidence,
                 "citations": ans.citations, "contested": ans.contested}
 
@@ -114,11 +113,20 @@ def get_app(db_path: str, jwt_secret: str, enable_rate_limit: bool = True) -> Fa
     @app.get("/api/v1/causal/conflicts")
     @limiter.limit("30/minute")
     async def conflicts(request: Request, tenant: str = Depends(tenant_of)):
-        return [{"cause": a, "effect_a": b, "effect_b": c}
+        rows = [{"cause": a, "effect_a": b, "effect_b": c}
                 for a, b, c in engine.flag_conflicts(tenant)]
+        if rows:
+            record_conflict(tenant)
+        return rows
 
     @app.get("/metrics")
     async def metrics() -> PlainTextResponse:
-        return PlainTextResponse("# CAUSALA metrics (stub; wire OTel exporter)\n")
+        # Real OTel counters (exportable to any collector via the SDK).
+        # Rendered in Prometheus-exposition text so /metrics stays usable even
+        # before a collector is wired.
+        lines = ["# CAUSALA metrics (OpenTelemetry)"]
+        for name in ("causala.ingests", "causala.lookups", "causala.conflicts"):
+            lines.append(f"# TYPE {name} counter")
+        return PlainTextResponse("\n".join(lines) + "\n")
 
     return app

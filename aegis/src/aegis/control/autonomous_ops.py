@@ -11,7 +11,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from ..backbone import ControlEvent, EventBus, Subsystem, register_subsystem
+from ..backbone import ControlEvent, EventBus, register_subsystem
 
 TIERS = ["shadow", "read_only", "limited_write", "autonomous"]
 AUTONOMOUS_MIN = "limited_write"

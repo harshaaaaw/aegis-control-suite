@@ -10,13 +10,13 @@ from __future__ import annotations
 
 import time
 import uuid
-from dataclasses import dataclass, field
-from typing import Callable, Protocol
+from collections.abc import Callable
+from typing import Any, Protocol
 
 
 class ControlEvent:
     """A single event on the bus. Evidence-backed: carries run_id + trace id."""
-    def __init__(self, subsystem: str, kind: str, payload: dict,
+    def __init__(self, subsystem: str, kind: str, payload: dict[str, Any],
                  run_id: str | None = None, tenant_id: str | None = None):
         self.event_id = uuid.uuid4().hex[:16]
         self.subsystem = subsystem
@@ -44,7 +44,7 @@ class EventBus:
         for handler in self._subs.get(event.subsystem, []):
             try:
                 handler(event)
-            except Exception as exc:  # isolation: a bad subscriber must not break the bus
+            except Exception as exc:  # noqa: BLE001  (intentional: bus isolation; logged with context below)
                 # observability: record the failure with context instead of swallowing silently
                 import logging
                 logging.getLogger("aegis.bus").error(
