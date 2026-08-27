@@ -1,0 +1,17 @@
+# venv / caches
+.venv-aegis/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# local data / secrets
+*.db
+runs/
+aegis.db
+*.jsonl
+.env
+secrets.*
+
+# os
+.DS_Store

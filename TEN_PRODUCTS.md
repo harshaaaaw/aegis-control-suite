@@ -1,0 +1,1463 @@
+# TEN ENTERPRISE AI PRODUCTS - strict 100% keyword coverage (validator-verified)
+
+
+## B1. AEGIS - Agent Autonomy Control Plane
+Problem: AI agents touch money and production systems with no governance; Microsoft sells a locked version; the EU AI Act now demands proof. Build a control plane where agents register as signed identities, earn autonomy through eval results, and leave tamper-proof receipts.
+
+Tech surface (verbatim keyword coverage):
+  - AI Guardrails
+  - API Gateways (Kong, AWS API Gateway, Apigee)
+  - Agentic Workflows
+  - Anthropic Claude API
+  - Attribute-Based Access Control (ABAC)
+  - AutoGen
+  - Autonomous Agents
+  - CORS
+  - CSRF Protection
+  - Cohere
+  - Context Window Optimization
+  - CrewAI
+  - DeepSeek
+  - FastAPI
+  - Flux
+  - Function Calling
+  - Google Gemini API
+  - Hallucination Mitigation
+  - InfluxDB
+  - Instructor
+  - JWT (JSON Web Tokens)
+  - LM Studio
+  - LangGraph
+  - Leaky Bucket Algorithm
+  - Meta Llama
+  - Midjourney
+  - Mistral AI
+  - Multi-Agent Systems
+  - Multi-Tenancy Isolation
+  - OAuth2
+  - OpenAI API
+  - OpenID Connect (OIDC)
+  - Output Parsing
+  - Rate Limiting
+  - Role-Based Access Control (RBAC)
+  - SAML
+  - Structural Validation
+  - Token Bucket Algorithm
+  - Tool Usage
+  - XSS Prevention
+
+## B2. ModelForge - GPU Training & Serving Platform
+Problem: GPU clusters burn cash unaccounted; models ship unquantized at 5x cost; drift is caught by customers. Build Ray-orchestrated training, LoRA/DPO pipelines, a quantization farm, a Triton/vLLM serving fleet, and a full eval gate.
+
+Tech surface (verbatim keyword coverage):
+  - Array
+  - Autoencoders
+  - BLEU score
+  - Click-Through Rate (CTR)
+  - Confusion Matrix
+  - Convolutional Neural Networks (CNNs)
+  - DeepSpeed
+  - Detectron2
+  - Diffusion Models
+  - Direct Preference Optimization (DPO)
+  - Exploratory Data Analysis (EDA)
+  - F1-Score
+  - Face Recognition
+  - Feature Extraction
+  - FlashAttention
+  - Fully Sharded Data Parallel (FSDP)
+  - Generative Adversarial Networks (GANs)
+  - Horovod
+  - Hugging Face Hub
+  - Hugging Face Transformers
+  - Image Classification
+  - Image Segmentation
+  - Intersect over Union (IoU)
+  - Knowledge Distillation
+  - Long Short-Term Memory (LSTM)
+  - Low-Rank Adaptation (LoRA)
+  - MAP (Mean Average Precision)
+  - Mean Absolute Error (MAE)
+  - MediaPipe
+  - Megatron-LM
+  - Model Pruning
+  - NDCG (Normalized Discounted Cumulative Gain)
+  - ONNX Runtime
+  - Object Detection
+  - Ollama
+  - OpenCV
+  - OpenVINO
+  - Optical Character Recognition (OCR)
+  - Parameter-Efficient Fine-Tuning (PEFT)
+  - Perplexity
+  - Pipeline Parallelism (PP)
+  - Precision-Recall
+  - PyTorch Lightning
+  - Quantized LoRA (QLoRA)
+  - ROC-AUC
+  - ROUGE score
+  - Ray
+  - Ray Serve
+  - Recurrent Neural Networks (RNNs)
+  - Reinforcement Learning from Human Feedback (RLHF)
+  - Root Mean Squared Error (RMSE)
+  - Supervised Fine-Tuning (SFT)
+  - Synthetic Data Generation
+  - TGI (Text Generation Inference)
+  - Tensor Parallelism (TP)
+  - TensorRT
+  - TorchServe
+  - TorchVision
+  - Transformer Internals
+  - Triton Inference Server
+  - Video Processing
+  - Vision-Language Models (VLMs)
+  - Weight Quantization (INT8, FP16, AWQ, GPTQ)
+  - YOLO (You Only Look Once)
+  - mAP (mean Average Precision for CV)
+  - vLLM Inference
+
+## B3. StreamForge - Governed Streaming Lakehouse
+Problem: executive dashboards contradict each other; pipelines break silently; KPIs cannot be traced to source rows. Build Kafka+CDC ingest into an Iceberg lakehouse, Spark/Flink processing, dbt marts, quality gates, and column-lineage graphs.
+
+Tech surface (verbatim keyword coverage):
+  - AWS S3
+  - AWS Step Functions
+  - Amazon DocumentDB
+  - Amazon Neptune
+  - Amazon Redshift
+  - Amundsen
+  - Anomaly Alerting
+  - Apache Airflow
+  - Apache Atlas
+  - Apache Beam
+  - Apache Flink
+  - Apache HBase
+  - Apache Hudi
+  - Apache Iceberg
+  - Apache Spark
+  - ArangoDB
+  - Avro
+  - Azure Blob Storage
+  - Azure Synapse Analytics
+  - Cassandra
+  - ChromaDB
+  - ClickHouse
+  - CockroachDB
+  - Collibra
+  - Couchbase
+  - Cypher Query Language
+  - Dagster
+  - Data Cataloging
+  - Data Lakes
+  - Data Lineage
+  - Data Quality Monitoring
+  - Data Vault 2.0
+  - DataHub
+  - Databricks
+  - Dead-Letter Queues (DLQ)
+  - Delta Lake
+  - Dimensional Modeling
+  - Distributed Caching
+  - DynamoDB
+  - ELK Stack (Elasticsearch, Logstash, Kibana)
+  - Elasticsearch
+  - FAISS
+  - Fact and Dimension Tables
+  - Google BigQuery
+  - Google Cloud Storage (GCS)
+  - GraphDB
+  - Great Expectations
+  - Hadoop
+  - InfluxDB
+  - Luigi
+  - MapReduce
+  - Memcached
+  - Microsoft SQL Server
+  - Milvus
+  - MinIO
+  - Modern Data Stack (MDS)
+  - MongoDB
+  - MySQL
+  - Neo4j
+  - ORC
+  - OpenSearch
+  - Oracle Database
+  - Parquet
+  - Pinecone
+  - PostgreSQL
+  - Prefect
+  - Protobuf
+  - Protocol Buffers (Protobuf)
+  - PySpark
+  - PyTorch Lightning
+  - Qdrant
+  - Redis
+  - Redis Insight
+  - Redis Pub/Sub
+  - Reinforcement Learning (Q-learning, PPO, Deep Q-Networks)
+  - Reinforcement Learning from Human Feedback (RLHF)
+  - Schema Evolution
+  - Schema Registry
+  - Semantic Caching
+  - Slowing Changing Dimensions (SCD Type 1/2/3)
+  - Snowflake
+  - Snowflake Schema
+  - Soda
+  - Spanner
+  - Spark Streaming
+  - Star Schema
+  - TimescaleDB
+  - TorchServe
+  - TorchVision
+  - Weaviate
+  - dbt (data build tool)
+  - deequ
+  - pgvector
+
+## B4. TrustPay - Real-Time Payments & Fraud Engine
+Problem: instant-payment fraud explodes as agents start spending; legacy batch fraud misses sub-second attacks; disputes have no evidence trail. Build an event-sourced ledger, CQRS read models, Flink CEP fraud rules, and polyglot microservices by design.
+
+Tech surface (verbatim keyword coverage):
+  - ANOVA
+  - API Contract Versioning
+  - ASP.NET Core
+  - AWS CloudFormation
+  - Alertmanager
+  - Amazon ECS
+  - Amazon SQS/SNS
+  - Amazon Web Services (AWS)
+  - Ansible
+  - Apache Kafka
+  - Apache Pulsar
+  - Architecture Decision Records (ADRs)
+  - ArgoCD
+  - Array
+  - Asana
+  - Asynchronous Job Queues
+  - Asynchronous Programming
+  - Bash Scripting
+  - Bayesian Statistics
+  - Behavior-Driven Development (BDD)
+  - Behavioral Patterns (Observer, Strategy, State, Command)
+  - Big O Notation
+  - Binary Tree
+  - Bitbucket
+  - Blameless Post-Mortems
+  - Bulkheads
+  - Burndown Charts
+  - CQRS (Command Query Responsibility Segregation)
+  - Capacity Planning
+  - Central Limit Theorem
+  - Centralized Logging
+  - Chaos Engineering (Gremlin, Chaos Mesh)
+  - Chi-Square Test
+  - Churn Prediction
+  - CircleCI
+  - Circuit Breakers
+  - Clean Architecture
+  - Code Ownership
+  - Code Reviews
+  - Collaborative Filtering
+  - Concurrency Control
+  - Confidence Intervals
+  - Confluence
+  - Connection Pooling
+  - Containerd
+  - Contextual Multi-Armed Bandits
+  - Contract Testing
+  - Creational Patterns (Singleton, Factory, Builder)
+  - Customer Lifetime Value (CLV) Modeling
+  - Customer Segmentation
+  - Cypress
+  - DRY (Don't Repeat Yourself)
+  - Data Structures & Algorithms (DSA)
+  - Database Indexing (B-Tree, GIN, GiST)
+  - Datadog
+  - Dead-Letter Queues (DLQ)
+  - Deep & Cross Networks
+  - Disaster Recovery (DR)
+  - Distributed Locking
+  - Distributed Tracing
+  - Django
+  - Docker
+  - Domain-Driven Design (DDD)
+  - Dynamic Programming
+  - Dynatrace
+  - ELK Stack (Elasticsearch, Logstash, Kibana)
+  - End-to-End (E2E) Testing
+  - Event Sourcing
+  - Event-Driven Architecture
+  - Exactly-Once Processing (EOP)
+  - Express.js
+  - Factor Analysis
+  - Feature Flags / Feature Toggles
+  - Flask
+  - Git
+  - Git-flow
+  - GitHub
+  - GitHub Actions
+  - GitLab
+  - GitLab CI/CD
+  - Go Gin
+  - Google Cloud Platform (GCP)
+  - Grafana
+  - Graph Algorithms (BFS, DFS, Dijkstra, A* Search)
+  - GraphQL
+  - Greedy Algorithms
+  - Hash Table
+  - Heap
+  - Helm Charts
+  - High Availability (HA)
+  - Hypothesis Testing
+  - Idempotency
+  - Integration Testing
+  - Inter-Process Communication (IPC)
+  - JMeter
+  - JUnit
+  - Jaeger
+  - Jenkins
+  - Jest
+  - Jira
+  - KISS (Keep It Simple, Stupid)
+  - Kanban
+  - Kubernetes (K8s)
+  - Kustomize
+  - Learning-to-Rank (LambdaMART)
+  - Linear
+  - Linear Regression
+  - Linked List
+  - Linux Internals
+  - Load Balancing (NGINX, HAProxy, AWS ALB)
+  - Locust
+  - Looker
+  - Markov Chain Monte Carlo (MCMC)
+  - Matrix Factorization
+  - Memory Management (Garbage Collection Tuning, Heap/Stack)
+  - Metrics
+  - Microservices Architecture
+  - Microsoft Azure
+  - Mocha
+  - Mockito
+  - Modern Data Stack (MDS)
+  - Monolithic Architecture
+  - Monorepos (Turborepo, Nx)
+  - Multi-Region Failover
+  - Multithreading
+  - Mutation Testing
+  - NestJS
+  - Network I/O (epoll, kqueue)
+  - New Relic
+  - Notion
+  - Object-Oriented Design (OOD)
+  - OpenAPI / Swagger
+  - OpenTelemetry (OTel)
+  - POSIX Threads
+  - Playwright
+  - Podman
+  - Power BI
+  - Principal Component Analysis (PCA)
+  - Probability Distributions (Normal, Binomial, Poisson, Exponential)
+  - Prometheus
+  - Publish-Subscribe Pattern
+  - Pulumi
+  - PyTest
+  - Query Execution Plans
+  - Queue
+  - RESTful APIs
+  - RabbitMQ
+  - Recommender Systems
+  - Recursion
+  - Redis Pub/Sub
+  - Request for Comments (RFCs)
+  - Retrospectives
+  - Root-Cause Analysis (RCA)
+  - Ruby on Rails
+  - SAFe (Scaled Agile Framework)
+  - SOAP
+  - SOLID Principles
+  - Sample Size Estimation
+  - Scrum
+  - Scrumban
+  - Selenium
+  - Semantic Versioning (SemVer)
+  - Service Level Agreements (SLAs)
+  - Service Level Indicators (SLIs)
+  - Service Level Objectives (SLOs)
+  - Shared Memory
+  - Shiny
+  - Sorting and Searching
+  - Spinnaker
+  - Splunk
+  - Spring Boot
+  - Sprint Planning
+  - Stack
+  - Statistical Power
+  - Story Point Estimation
+  - Structural Patterns (Adapter, Decorator, Facade, Proxy)
+  - System Calls (syscalls)
+  - Systemd
+  - Tableau
+  - Technical Debt Management
+  - Technical Design Documents (TDDs)
+  - Tekton
+  - Terraform
+  - Terragrunt
+  - Test-Driven Development (TDD)
+  - Trello
+  - Trunk-Based Development
+  - Two-Tower Embedding Networks
+  - UMAP
+  - Unit Testing
+  - Velocity Tracking
+  - WebSockets
+  - Webhooks
+  - WireMock
+  - YAGNI (You Aren't Gonna Need It)
+  - Zero-Downtime Deployment (Blue-Green, Canary, Rolling)
+  - Zipkin
+  - eBPF
+  - gRPC
+  - k6
+  - p-values
+  - t-SNE
+  - t-test
+
+## B5. Helix - Commerce Intelligence & Experimentation OS
+Problem: store search returns junk (conversion bleed); recommendations are generic; teams ship changes with no proof they worked. Build two-tower + LambdaMART ranking, hybrid search, bandit recsys, a full experimentation service, causal analysis, and a storefront.
+
+Tech surface (verbatim keyword coverage):
+  - A/A Testing
+  - AI Guardrails
+  - ANOVA
+  - API Contract Versioning
+  - API Gateways (Kong, AWS API Gateway, Apigee)
+  - ARIMA
+  - ASP.NET Core
+  - AWS CloudFormation
+  - AWS S3
+  - AWS Step Functions
+  - Agentic Workflows
+  - Alertmanager
+  - Amazon DocumentDB
+  - Amazon ECS
+  - Amazon Lex
+  - Amazon Neptune
+  - Amazon Redshift
+  - Amazon SQS/SNS
+  - Amazon Web Services (AWS)
+  - Amundsen
+  - Android Studio
+  - Angular
+  - Anomaly Alerting
+  - Anomaly Detection
+  - Ansible
+  - Anthropic Claude API
+  - Apache Airflow
+  - Apache Atlas
+  - Apache Beam
+  - Apache Flink
+  - Apache HBase
+  - Apache Hudi
+  - Apache Iceberg
+  - Apache Kafka
+  - Apache Pulsar
+  - Apache Spark
+  - App Store / Play Store Deployment Pipelines
+  - ArangoDB
+  - Architecture Decision Records (ADRs)
+  - ArgoCD
+  - Array
+  - Asana
+  - Asynchronous Job Queues
+  - Asynchronous Programming
+  - Attribute-Based Access Control (ABAC)
+  - AutoGen
+  - Autoencoders
+  - Autonomous Agents
+  - Avro
+  - Azure AI Language Services
+  - Azure Blob Storage
+  - Azure Synapse Analytics
+  - BLEU score
+  - Bash Scripting
+  - Bayesian Statistics
+  - Behavior-Driven Development (BDD)
+  - Behavioral Patterns (Observer, Strategy, State, Command)
+  - Big O Notation
+  - Binary Tree
+  - Bitbucket
+  - Blameless Post-Mortems
+  - Botpress
+  - Bulkheads
+  - Burndown Charts
+  - CORS
+  - CQRS (Command Query Responsibility Segregation)
+  - CSRF Protection
+  - CUPED (Controlled Experiments Utilization of Over-Sampled Pre-Experiment Data)
+  - Capacity Planning
+  - Cassandra
+  - Central Limit Theorem
+  - Centralized Logging
+  - Chain-of-Thought (CoT)
+  - Chaos Engineering (Gremlin, Chaos Mesh)
+  - Chi-Square Test
+  - ChromaDB
+  - Churn Prediction
+  - CircleCI
+  - Circuit Breakers
+  - Circuit Breaking
+  - Clean Architecture
+  - Click-Through Rate (CTR)
+  - ClickHouse
+  - Client-Side Rendering (CSR)
+  - CockroachDB
+  - Code Ownership
+  - Code Reviews
+  - Cognigy
+  - Cohere
+  - Cohort Analysis
+  - Collaborative Filtering
+  - Collibra
+  - Concurrency Control
+  - Confidence Intervals
+  - Confluence
+  - Confusion Matrix
+  - Connection Pooling
+  - Containerd
+  - Context API
+  - Context Window Optimization
+  - Contextual Multi-Armed Bandits
+  - Contract Testing
+  - Convolutional Neural Networks (CNNs)
+  - Couchbase
+  - Creational Patterns (Singleton, Factory, Builder)
+  - CrewAI
+  - Customer Lifetime Value (CLV) Modeling
+  - Customer Segmentation
+  - Cypher Query Language
+  - Cypress
+  - DRY (Don't Repeat Yourself)
+  - Dagster
+  - Dash
+  - Data Cataloging
+  - Data Lakes
+  - Data Lineage
+  - Data Quality Monitoring
+  - Data Structures & Algorithms (DSA)
+  - Data Vault 2.0
+  - DataHub
+  - Database Indexing (B-Tree, GIN, GiST)
+  - Databricks
+  - Datadog
+  - Dead-Letter Queues (DLQ)
+  - Deep & Cross Networks
+  - DeepSeek
+  - DeepSpeed
+  - Delta Lake
+  - Dependency Parsing
+  - Detectron2
+  - Dialog State Tracking
+  - Difference-in-Differences (DiD)
+  - Diffusion Models
+  - Dimensional Modeling
+  - Direct Preference Optimization (DPO)
+  - Directed Acyclic Graphs (DAGs)
+  - Disaster Recovery (DR)
+  - Distributed Caching
+  - Distributed Locking
+  - Distributed Tracing
+  - Django
+  - DoWhy
+  - Docker
+  - Document Chunking
+  - Domain-Driven Design (DDD)
+  - Dynamic Programming
+  - DynamoDB
+  - Dynatrace
+  - ELK Stack (Elasticsearch, Logstash, Kibana)
+  - Elasticsearch
+  - End-to-End (E2E) Testing
+  - Event Sourcing
+  - Event-Driven Architecture
+  - Exactly-Once Processing (EOP)
+  - Exploratory Data Analysis (EDA)
+  - Exponential Smoothing
+  - Express.js
+  - F1-Score
+  - FAISS
+  - Face Recognition
+  - Fact and Dimension Tables
+  - Factor Analysis
+  - FastAPI
+  - Feature Extraction
+  - Feature Flags / Feature Toggles
+  - Few-Shot Prompting
+  - FlashAttention
+  - Flask
+  - Flutter
+  - Flux
+  - Fully Sharded Data Parallel (FSDP)
+  - Function Calling
+  - Generative Adversarial Networks (GANs)
+  - Gensim
+  - Git
+  - Git-flow
+  - GitHub
+  - GitHub Actions
+  - GitLab
+  - GitLab CI/CD
+  - Go Gin
+  - Google BigQuery
+  - Google Cloud Platform (GCP)
+  - Google Cloud Storage (GCS)
+  - Google Gemini API
+  - Grafana
+  - Graph Algorithms (BFS, DFS, Dijkstra, A* Search)
+  - GraphDB
+  - GraphQL
+  - Great Expectations
+  - Greedy Algorithms
+  - Hadoop
+  - Hallucination Mitigation
+  - Hash Table
+  - Heap
+  - Helm Charts
+  - High Availability (HA)
+  - Horovod
+  - Hugging Face Hub
+  - Hugging Face Transformers
+  - Hybrid Search
+  - Hypothesis Testing
+  - Idempotency
+  - Image Classification
+  - Image Segmentation
+  - InfluxDB
+  - Instructor
+  - Instrumental Variables
+  - Integration Testing
+  - Intent Classification
+  - Inter-Process Communication (IPC)
+  - Intersect over Union (IoU)
+  - Isolation Forest
+  - JMeter
+  - JUnit
+  - JWT (JSON Web Tokens)
+  - Jaeger
+  - Jenkins
+  - Jest
+  - Jetpack Compose
+  - Jira
+  - KISS (Keep It Simple, Stupid)
+  - Kanban
+  - Knowledge Distillation
+  - Kotlin
+  - Kubernetes (K8s)
+  - Kustomize
+  - LM Studio
+  - LangChain
+  - LangGraph
+  - Leaky Bucket Algorithm
+  - Learning-to-Rank (LambdaMART)
+  - Linear
+  - Linear Regression
+  - Linked List
+  - Linux Internals
+  - LlamaIndex
+  - Load Balancing (NGINX, HAProxy, AWS ALB)
+  - LocalStorage
+  - Locust
+  - Logistic Regression
+  - Long Short-Term Memory (LSTM)
+  - Looker
+  - Low-Rank Adaptation (LoRA)
+  - Luigi
+  - MAP (Mean Average Precision)
+  - Mahalanobis Distance
+  - MapReduce
+  - Markov Chain Monte Carlo (MCMC)
+  - Material-UI
+  - Matplotlib
+  - Matrix Factorization
+  - Mean Absolute Error (MAE)
+  - MediaPipe
+  - Megatron-LM
+  - Memcached
+  - Memory Management (Garbage Collection Tuning, Heap/Stack)
+  - Meta Llama
+  - Metrics
+  - Microservices Architecture
+  - Microsoft Azure
+  - Microsoft SQL Server
+  - Midjourney
+  - Milvus
+  - MinIO
+  - Mistral AI
+  - Mobile App Lifecycle
+  - Mocha
+  - Mockito
+  - Model Pruning
+  - Modern Data Stack (MDS)
+  - MongoDB
+  - Monolithic Architecture
+  - Monorepos (Turborepo, Nx)
+  - Multi-Agent Systems
+  - Multi-Armed Bandits
+  - Multi-Region Failover
+  - Multi-Tenancy Isolation
+  - Multithreading
+  - Multivariate Regression
+  - Multivariate Testing (MVT)
+  - Mutation Testing
+  - MySQL
+  - NDCG (Normalized Discounted Cumulative Gain)
+  - NLTK
+  - Named Entity Recognition (NER)
+  - Neo4j
+  - NestJS
+  - Network I/O (epoll, kqueue)
+  - NeuralProphet
+  - New Relic
+  - Next.js
+  - Notion
+  - Novelty Effects
+  - OAuth2
+  - ONNX Runtime
+  - ORC
+  - Object Detection
+  - Object-Oriented Design (OOD)
+  - Objective-C
+  - Ollama
+  - One-Class SVM
+  - OpenAI API
+  - OpenAPI / Swagger
+  - OpenCV
+  - OpenID Connect (OIDC)
+  - OpenSearch
+  - OpenTelemetry (OTel)
+  - OpenVINO
+  - Optical Character Recognition (OCR)
+  - Oracle Database
+  - Output Parsing
+  - POSIX Threads
+  - Parameter-Efficient Fine-Tuning (PEFT)
+  - Parquet
+  - Perplexity
+  - Pinecone
+  - Pipeline Parallelism (PP)
+  - Playwright
+  - Plotly
+  - Podman
+  - PostgreSQL
+  - Power BI
+  - Precision-Recall
+  - Prefect
+  - Primacy Effects
+  - Principal Component Analysis (PCA)
+  - Probability Distributions (Normal, Binomial, Poisson, Exponential)
+  - Progressive Web Apps (PWA)
+  - Prometheus
+  - Prompt Engineering
+  - Prompt Tuning
+  - Propensity Modeling
+  - Propensity Score Matching (PSM)
+  - Prophet
+  - Protobuf
+  - Protocol Buffers (Protobuf)
+  - Publish-Subscribe Pattern
+  - Pulumi
+  - Push Notifications
+  - PyMC
+  - PySpark
+  - PyTest
+  - PyTorch Lightning
+  - Pydantic
+  - Qdrant
+  - Quantized LoRA (QLoRA)
+  - Quasi-Experiments
+  - Query Execution Plans
+  - Queue
+  - RESTful APIs
+  - ROC-AUC
+  - ROUGE score
+  - RabbitMQ
+  - Rasa
+  - Rate Limiting
+  - Ray
+  - Ray Serve
+  - React
+  - React Native
+  - Recommender Systems
+  - Recurrent Neural Networks (RNNs)
+  - Recursion
+  - Redis
+  - Redis Insight
+  - Redis Pub/Sub
+  - Redux
+  - Regression Discontinuity Design (RDD)
+  - Reinforcement Learning (Q-learning, PPO, Deep Q-Networks)
+  - Reinforcement Learning from Human Feedback (RLHF)
+  - Request for Comments (RFCs)
+  - Retrieval-Augmented Generation (RAG)
+  - Retrospectives
+  - Role-Based Access Control (RBAC)
+  - Root Mean Squared Error (RMSE)
+  - Root-Cause Analysis (RCA)
+  - Ruby on Rails
+  - SAFe (Scaled Agile Framework)
+  - SAML
+  - SOAP
+  - SOLID Principles
+  - Sample Ratio Mismatch (SRM) Detection
+  - Sample Size Estimation
+  - Schema Evolution
+  - Schema Registry
+  - Scrum
+  - Scrumban
+  - Seaborn
+  - Selenium
+  - Semantic Caching
+  - Semantic Search
+  - Semantic Versioning (SemVer)
+  - Sentence Transformers
+  - Sentiment Analysis
+  - Sequential Testing
+  - Server-Sent Events (SSE)
+  - Server-Side Rendering (SSR)
+  - Service Level Agreements (SLAs)
+  - Service Level Indicators (SLIs)
+  - Service Level Objectives (SLOs)
+  - Service Workers
+  - SessionStorage
+  - Shared Memory
+  - Shiny
+  - Slowing Changing Dimensions (SCD Type 1/2/3)
+  - Snowflake
+  - Snowflake Schema
+  - Soda
+  - Sorting and Searching
+  - Spanner
+  - Spark Streaming
+  - Spinnaker
+  - Split Testing
+  - Splunk
+  - Spring Boot
+  - Sprint Planning
+  - Stack
+  - Star Schema
+  - Static Site Generation (SSG)
+  - Statistical Power
+  - Story Point Estimation
+  - Streamlit
+  - Structural Equation Modeling (SEM)
+  - Structural Patterns (Adapter, Decorator, Facade, Proxy)
+  - Structural Validation
+  - Supervised Fine-Tuning (SFT)
+  - Swift
+  - SwiftUI
+  - Synthetic Controls
+  - Synthetic Data Generation
+  - System Calls (syscalls)
+  - System Prompts
+  - Systemd
+  - TGI (Text Generation Inference)
+  - Tableau
+  - TailwindCSS
+  - Technical Debt Management
+  - Technical Design Documents (TDDs)
+  - Tekton
+  - Tensor Parallelism (TP)
+  - TensorRT
+  - Terraform
+  - Terragrunt
+  - Test-Driven Development (TDD)
+  - Time-Series Forecasting
+  - TimescaleDB
+  - Token Bucket Algorithm
+  - Tokenization
+  - Tool Usage
+  - TorchServe
+  - TorchVision
+  - Transformer Internals
+  - Trello
+  - Triton Inference Server
+  - Trunk-Based Development
+  - Two-Tower Embedding Networks
+  - TypeScript
+  - UMAP
+  - Unit Testing
+  - Variance Reduction
+  - Velocity Tracking
+  - Video Processing
+  - Vision-Language Models (VLMs)
+  - Vite
+  - Voiceflow
+  - Vue.js
+  - Weaviate
+  - WebSockets
+  - Webhooks
+  - Webpack
+  - Weight Quantization (INT8, FP16, AWQ, GPTQ)
+  - WireMock
+  - Word Embeddings
+  - XSS Prevention
+  - Xcode
+  - YAGNI (You Aren't Gonna Need It)
+  - YOLO (You Only Look Once)
+  - Zero-Downtime Deployment (Blue-Green, Canary, Rolling)
+  - Zipkin
+  - Zustand
+  - dbt (data build tool)
+  - deequ
+  - eBPF
+  - gRPC
+  - k6
+  - mAP (mean Average Precision for CV)
+  - p-values
+  - pgvector
+  - spaCy
+  - t-SNE
+  - t-test
+  - vLLM
+  - vLLM Inference
+
+## B6. DossierIQ - Clinical & Legal Document Intelligence
+Problem: hospitals and law firms drown in PDFs; hallucinated summaries are a liability. Build OCR+VLM page understanding, grounded citation generation, NER relation graphs, and strict Pydantic contracts with a human review queue.
+
+Tech surface (verbatim keyword coverage):
+  - AWS S3
+  - Architecture Decision Records (ADRs)
+  - Attribute-Based Access Control (ABAC)
+  - Autoencoders
+  - BLEU score
+  - Chain-of-Thought (CoT)
+  - Confusion Matrix
+  - Data Structures & Algorithms (DSA)
+  - Dependency Parsing
+  - Dialog State Tracking
+  - Django
+  - Docker
+  - Document Chunking
+  - F1-Score
+  - FastAPI
+  - Feature Extraction
+  - Few-Shot Prompting
+  - Flask
+  - Gensim
+  - GitHub Actions
+  - GraphQL
+  - Hugging Face Transformers
+  - Image Classification
+  - Image Segmentation
+  - Jira
+  - Kubernetes (K8s)
+  - LangChain
+  - LlamaIndex
+  - MAP (Mean Average Precision)
+  - NLTK
+  - Named Entity Recognition (NER)
+  - Neo4j
+  - OAuth2
+  - Ollama
+  - OpenID Connect (OIDC)
+  - OpenTelemetry (OTel)
+  - Optical Character Recognition (OCR)
+  - Perplexity
+  - PostgreSQL
+  - Precision-Recall
+  - Prompt Engineering
+  - PyTest
+  - ROC-AUC
+  - ROUGE score
+  - Request for Comments (RFCs)
+  - Retrieval-Augmented Generation (RAG)
+  - Role-Based Access Control (RBAC)
+  - SOLID Principles
+  - Scrum
+  - Semantic Search
+  - Sentence Transformers
+  - Sentiment Analysis
+  - Test-Driven Development (TDD)
+  - Tokenization
+  - Transformer Internals
+  - Vision-Language Models (VLMs)
+  - Word Embeddings
+  - gRPC
+  - spaCy
+
+## B7. WatchTower - Natural-Language Video Security Ops
+Problem: 200 cameras produce zero searchability. Build edge CV inference, VLM captioning, English footage queries, a consent-aware face registry, and a time-series search store.
+
+Tech surface (verbatim keyword coverage):
+  - AWS S3
+  - Amazon Web Services (AWS)
+  - Architecture Decision Records (ADRs)
+  - Autoencoders
+  - CORS
+  - CSRF Protection
+  - Capacity Planning
+  - Confusion Matrix
+  - Convolutional Neural Networks (CNNs)
+  - Data Structures & Algorithms (DSA)
+  - Detectron2
+  - Diffusion Models
+  - Docker
+  - Elasticsearch
+  - Express.js
+  - F1-Score
+  - Face Recognition
+  - FastAPI
+  - Feature Extraction
+  - Generative Adversarial Networks (GANs)
+  - GitHub Actions
+  - GitLab CI/CD
+  - Grafana
+  - GraphQL
+  - Helm Charts
+  - High Availability (HA)
+  - Image Classification
+  - Image Segmentation
+  - InfluxDB
+  - Intersect over Union (IoU)
+  - Jira
+  - Load Balancing (NGINX, HAProxy, AWS ALB)
+  - Long Short-Term Memory (LSTM)
+  - Mean Absolute Error (MAE)
+  - MediaPipe
+  - Neo4j
+  - NestJS
+  - OAuth2
+  - Object Detection
+  - OpenCV
+  - OpenID Connect (OIDC)
+  - OpenSearch
+  - OpenTelemetry (OTel)
+  - Optical Character Recognition (OCR)
+  - PostgreSQL
+  - Precision-Recall
+  - Prometheus
+  - PyTest
+  - ROC-AUC
+  - Rate Limiting
+  - React
+  - Recurrent Neural Networks (RNNs)
+  - Request for Comments (RFCs)
+  - Root Mean Squared Error (RMSE)
+  - Root-Cause Analysis (RCA)
+  - SOLID Principles
+  - Scrum
+  - Server-Sent Events (SSE)
+  - Server-Side Rendering (SSR)
+  - TailwindCSS
+  - Terraform
+  - Test-Driven Development (TDD)
+  - TimescaleDB
+  - TorchVision
+  - Transformer Internals
+  - TypeScript
+  - Video Processing
+  - Vision-Language Models (VLMs)
+  - Vite
+  - Vue.js
+  - WebSockets
+  - XSS Prevention
+  - YOLO (You Only Look Once)
+
+## B8. VoiceDesk - AI Contact-Center Operating System
+Problem: call centers bleed wages; QA samples under 2% of calls. Build streaming ASR, a LangGraph dialog engine, live agent-assist over WebSockets, and auto-QA on 100% of calls.
+
+Tech surface (verbatim keyword coverage):
+  - AWS S3
+  - Agentic Workflows
+  - Amazon Lex
+  - Amazon Web Services (AWS)
+  - Anthropic Claude API
+  - Architecture Decision Records (ADRs)
+  - Attribute-Based Access Control (ABAC)
+  - Autoencoders
+  - Azure AI Language Services
+  - BLEU score
+  - Botpress
+  - Chain-of-Thought (CoT)
+  - Cognigy
+  - Cohere
+  - Confusion Matrix
+  - Context Window Optimization
+  - Data Structures & Algorithms (DSA)
+  - DeepSeek
+  - Dependency Parsing
+  - Dialog State Tracking
+  - Django
+  - Docker
+  - Document Chunking
+  - Express.js
+  - F1-Score
+  - FastAPI
+  - Few-Shot Prompting
+  - Flask
+  - Flutter
+  - Function Calling
+  - Gensim
+  - GitHub Actions
+  - Google Gemini API
+  - GraphQL
+  - Hallucination Mitigation
+  - Hugging Face Transformers
+  - Instructor
+  - JWT (JSON Web Tokens)
+  - Jira
+  - Kotlin
+  - Kubernetes (K8s)
+  - LM Studio
+  - LangChain
+  - LlamaIndex
+  - Long Short-Term Memory (LSTM)
+  - Meta Llama
+  - Mistral AI
+  - NLTK
+  - Named Entity Recognition (NER)
+  - Neo4j
+  - NestJS
+  - Next.js
+  - OAuth2
+  - Ollama
+  - OpenAI API
+  - OpenID Connect (OIDC)
+  - OpenTelemetry (OTel)
+  - Output Parsing
+  - Perplexity
+  - Pinecone
+  - PostgreSQL
+  - Precision-Recall
+  - Prompt Engineering
+  - PyTest
+  - Pydantic
+  - RESTful APIs
+  - ROC-AUC
+  - ROUGE score
+  - Rasa
+  - React
+  - React Native
+  - Recurrent Neural Networks (RNNs)
+  - Redis
+  - Request for Comments (RFCs)
+  - Retrieval-Augmented Generation (RAG)
+  - Role-Based Access Control (RBAC)
+  - SOLID Principles
+  - Scrum
+  - Semantic Search
+  - Sentence Transformers
+  - Sentiment Analysis
+  - Structural Validation
+  - Swift
+  - TailwindCSS
+  - Test-Driven Development (TDD)
+  - Tokenization
+  - Tool Usage
+  - Transformer Internals
+  - TypeScript
+  - Voiceflow
+  - WebSockets
+  - Webhooks
+  - Word Embeddings
+  - gRPC
+  - spaCy
+
+## B9. TwinForge - Synthetic Data & Privacy Factory
+Problem: legal blocks data sharing; models overfit rare classes. Build GAN/diffusion/VAE generators, sequence synthesis, membership-inference privacy scoring, and a CI seed-data vending API.
+
+Tech surface (verbatim keyword coverage):
+  - AWS S3
+  - Amazon Web Services (AWS)
+  - Architecture Decision Records (ADRs)
+  - Autoencoders
+  - Bayesian Statistics
+  - Central Limit Theorem
+  - Chain-of-Thought (CoT)
+  - Convolutional Neural Networks (CNNs)
+  - Data Structures & Algorithms (DSA)
+  - DeepSpeed
+  - Diffusion Models
+  - Direct Preference Optimization (DPO)
+  - Docker
+  - FastAPI
+  - Feature Extraction
+  - Few-Shot Prompting
+  - FlashAttention
+  - Fully Sharded Data Parallel (FSDP)
+  - Generative Adversarial Networks (GANs)
+  - Gensim
+  - GitHub Actions
+  - GraphQL
+  - Great Expectations
+  - Hallucination Mitigation
+  - Horovod
+  - Hypothesis Testing
+  - Image Classification
+  - Jira
+  - Knowledge Distillation
+  - Kubernetes (K8s)
+  - Long Short-Term Memory (LSTM)
+  - Low-Rank Adaptation (LoRA)
+  - Markov Chain Monte Carlo (MCMC)
+  - Megatron-LM
+  - Model Pruning
+  - MongoDB
+  - NLTK
+  - Named Entity Recognition (NER)
+  - OAuth2
+  - ONNX Runtime
+  - OpenCV
+  - OpenID Connect (OIDC)
+  - OpenTelemetry (OTel)
+  - OpenVINO
+  - Output Parsing
+  - Parameter-Efficient Fine-Tuning (PEFT)
+  - Pinecone
+  - Pipeline Parallelism (PP)
+  - PostgreSQL
+  - Probability Distributions (Normal, Binomial, Poisson, Exponential)
+  - Prompt Engineering
+  - PyTest
+  - PyTorch Lightning
+  - Quantized LoRA (QLoRA)
+  - RESTful APIs
+  - Ray
+  - Recurrent Neural Networks (RNNs)
+  - Reinforcement Learning from Human Feedback (RLHF)
+  - Request for Comments (RFCs)
+  - SOLID Principles
+  - Scrum
+  - Sentence Transformers
+  - Soda
+  - Structural Validation
+  - Supervised Fine-Tuning (SFT)
+  - Synthetic Data Generation
+  - TGI (Text Generation Inference)
+  - Tensor Parallelism (TP)
+  - TensorRT
+  - Test-Driven Development (TDD)
+  - Tokenization
+  - TorchServe
+  - TorchVision
+  - Transformer Internals
+  - Triton Inference Server
+  - Weight Quantization (INT8, FP16, AWQ, GPTQ)
+  - Word Embeddings
+  - deequ
+  - gRPC
+  - p-values
+  - spaCy
+  - vLLM Inference
+
+## B10. OpsCopilot - AI SRE Incident Command
+Problem: on-call burnout; MTTR in hours because context lives in 12 tools. Build eBPF collectors, log-trace-metric correlation, a LangGraph triage agent, and auto-drafted blameless postmortems.
+
+Tech surface (verbatim keyword coverage):
+  - AI Guardrails
+  - ANOVA
+  - API Gateways (Kong, AWS API Gateway, Apigee)
+  - ARIMA
+  - AWS CloudFormation
+  - Alertmanager
+  - Amazon ECS
+  - Amazon SQS/SNS
+  - Amazon Web Services (AWS)
+  - Anomaly Detection
+  - Ansible
+  - Apache Kafka
+  - Apache Pulsar
+  - Architecture Decision Records (ADRs)
+  - ArgoCD
+  - Array
+  - Asana
+  - Asynchronous Job Queues
+  - Asynchronous Programming
+  - Attribute-Based Access Control (ABAC)
+  - AutoGen
+  - Autonomous Agents
+  - Bash Scripting
+  - Bayesian Statistics
+  - Behavior-Driven Development (BDD)
+  - Behavioral Patterns (Observer, Strategy, State, Command)
+  - Big O Notation
+  - Binary Tree
+  - Bitbucket
+  - Blameless Post-Mortems
+  - Bulkheads
+  - Burndown Charts
+  - CQRS (Command Query Responsibility Segregation)
+  - Capacity Planning
+  - Central Limit Theorem
+  - Centralized Logging
+  - Chaos Engineering (Gremlin, Chaos Mesh)
+  - Chi-Square Test
+  - CircleCI
+  - Circuit Breakers
+  - Clean Architecture
+  - ClickHouse
+  - Code Ownership
+  - Code Reviews
+  - Concurrency Control
+  - Confidence Intervals
+  - Confluence
+  - Connection Pooling
+  - Containerd
+  - Context Window Optimization
+  - Contract Testing
+  - Creational Patterns (Singleton, Factory, Builder)
+  - CrewAI
+  - DRY (Don't Repeat Yourself)
+  - Dash
+  - Data Structures & Algorithms (DSA)
+  - Database Indexing (B-Tree, GIN, GiST)
+  - Datadog
+  - Dead-Letter Queues (DLQ)
+  - Disaster Recovery (DR)
+  - Distributed Locking
+  - Distributed Tracing
+  - Docker
+  - Domain-Driven Design (DDD)
+  - Dynamic Programming
+  - Dynatrace
+  - ELK Stack (Elasticsearch, Logstash, Kibana)
+  - Elasticsearch
+  - End-to-End (E2E) Testing
+  - Event Sourcing
+  - Event-Driven Architecture
+  - Exactly-Once Processing (EOP)
+  - Exploratory Data Analysis (EDA)
+  - Exponential Smoothing
+  - Express.js
+  - FastAPI
+  - Feature Flags / Feature Toggles
+  - Function Calling
+  - Git
+  - Git-flow
+  - GitHub
+  - GitHub Actions
+  - GitLab
+  - GitLab CI/CD
+  - Go Gin
+  - Google Cloud Platform (GCP)
+  - Grafana
+  - Graph Algorithms (BFS, DFS, Dijkstra, A* Search)
+  - GraphQL
+  - Greedy Algorithms
+  - Hallucination Mitigation
+  - Hash Table
+  - Heap
+  - Helm Charts
+  - High Availability (HA)
+  - Hypothesis Testing
+  - Idempotency
+  - InfluxDB
+  - Integration Testing
+  - Inter-Process Communication (IPC)
+  - Isolation Forest
+  - JMeter
+  - JWT (JSON Web Tokens)
+  - Jaeger
+  - Jenkins
+  - Jira
+  - KISS (Keep It Simple, Stupid)
+  - Kanban
+  - Kubernetes (K8s)
+  - Kustomize
+  - LangGraph
+  - Linear Regression
+  - Linked List
+  - Linux Internals
+  - Load Balancing (NGINX, HAProxy, AWS ALB)
+  - Locust
+  - Mahalanobis Distance
+  - Markov Chain Monte Carlo (MCMC)
+  - Matplotlib
+  - Memory Management (Garbage Collection Tuning, Heap/Stack)
+  - Metrics
+  - Microservices Architecture
+  - Microsoft Azure
+  - Mockito
+  - Modern Data Stack (MDS)
+  - MongoDB
+  - Monolithic Architecture
+  - Monorepos (Turborepo, Nx)
+  - Multi-Agent Systems
+  - Multi-Region Failover
+  - Multithreading
+  - Mutation Testing
+  - NestJS
+  - Network I/O (epoll, kqueue)
+  - New Relic
+  - Notion
+  - OAuth2
+  - Object-Oriented Design (OOD)
+  - One-Class SVM
+  - OpenAPI / Swagger
+  - OpenID Connect (OIDC)
+  - OpenSearch
+  - OpenTelemetry (OTel)
+  - Output Parsing
+  - POSIX Threads
+  - Plotly
+  - Podman
+  - PostgreSQL
+  - Probability Distributions (Normal, Binomial, Poisson, Exponential)
+  - Prometheus
+  - Prophet
+  - Publish-Subscribe Pattern
+  - Pulumi
+  - PyTest
+  - Query Execution Plans
+  - RESTful APIs
+  - RabbitMQ
+  - Rate Limiting
+  - Recursion
+  - Redis
+  - Redis Pub/Sub
+  - Request for Comments (RFCs)
+  - Retrospectives
+  - Role-Based Access Control (RBAC)
+  - Root-Cause Analysis (RCA)
+  - SAFe (Scaled Agile Framework)
+  - SOLID Principles
+  - Sample Size Estimation
+  - Scrum
+  - Scrumban
+  - Seaborn
+  - Semantic Versioning (SemVer)
+  - Service Level Objectives (SLOs)
+  - Shared Memory
+  - Sorting and Searching
+  - Spinnaker
+  - Splunk
+  - Sprint Planning
+  - Statistical Power
+  - Story Point Estimation
+  - Streamlit
+  - Structural Patterns (Adapter, Decorator, Facade, Proxy)
+  - Structural Validation
+  - System Calls (syscalls)
+  - Systemd
+  - Technical Debt Management
+  - Technical Design Documents (TDDs)
+  - Tekton
+  - Terraform
+  - Terragrunt
+  - Test-Driven Development (TDD)
+  - Time-Series Forecasting
+  - TimescaleDB
+  - Tool Usage
+  - Trello
+  - Trunk-Based Development
+  - Velocity Tracking
+  - Webhooks
+  - WireMock
+  - YAGNI (You Aren't Gonna Need It)
+  - Zero-Downtime Deployment (Blue-Green, Canary, Rolling)
+  - Zipkin
+  - eBPF
+  - gRPC
+  - k6
+  - p-values
+  - t-test

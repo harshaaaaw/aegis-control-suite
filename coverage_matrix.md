@@ -1,0 +1,500 @@
+# Keyword -> Bucket coverage matrix
+
+Overall: 496/496 = 100.0%
+
+- **a/a testing**: B5
+- **abac**: B1, B4
+- **adrs**: B1
+- **agentic workflows**: B1, B10
+- **ai guardrails**: B1, B8
+- **airflow**: B3
+- **alertmanager**: B1, B10
+- **amazon lex**: B8
+- **amundsen**: B3
+- **android studio**: B5
+- **angular**: B1
+- **anomaly alerting**: B3, B5, B10
+- **anomaly detection**: B3, B5, B10
+- **anova**: B5
+- **ansible**: B1
+- **anthropic claude api**: B1, B2
+- **api contract versioning**: B4
+- **api gateways**: B1
+- **app store deployment**: B5
+- **arangodb**: B6
+- **argocd**: B1
+- **arima**: B5
+- **array**: B4, B10
+- **asana**: ALL
+- **asp.net core**: B4
+- **async job queues**: B4
+- **async programming**: B1, B4
+- **atlas**: B3
+- **autoencoders**: B9
+- **autogen**: B1
+- **autonomous agents**: B1
+- **avro**: B3
+- **aws**: B1, B3
+- **azure**: B1, B3
+- **azure ai language services**: B8
+- **bash scripting**: B1, B10
+- **bayesian statistics**: B5, B9
+- **bdd**: B5
+- **beam**: B3
+- **behavioral patterns**: ALL
+- **big o**: B4, B10
+- **bigquery**: B3
+- **binary tree**: B4, B10
+- **bitbucket**: ALL
+- **blameless postmortems**: B1, B10
+- **bleu**: B2
+- **blob**: B3, B6
+- **botpress**: B8
+- **bulkheads**: B4
+- **burndown**: ALL
+- **capacity planning**: B1, B2
+- **cassandra**: B3
+- **centralized logging**: B1, B10
+- **chain-of-thought**: B2, B8
+- **chaos engineering**: B1, B10
+- **chi-square**: B5
+- **chromadb**: B5
+- **churn prediction**: B4, B5
+- **circleci**: B1
+- **circuit breakers**: B1, B4
+- **circuit breaking**: B1, B4
+- **clean architecture**: B1
+- **clickhouse**: B4, B3
+- **cloudformation**: B1
+- **clt**: B5
+- **clv modeling**: B4, B5
+- **cnns**: B2, B7
+- **cockroachdb**: B4
+- **code ownership**: ALL
+- **code reviews**: ALL
+- **cognigy**: B8
+- **cohere**: B1, B2
+- **cohort analysis**: B5
+- **collaborative filtering**: B5
+- **collibra**: B3
+- **concurrency control**: B4
+- **confidence intervals**: B5
+- **confluence**: ALL
+- **confusion matrix**: B2, B7
+- **connection pooling**: B3, B4
+- **containerd**: B1
+- **context api**: B5
+- **context window optimization**: B2, B8
+- **contextual multi-armed bandits**: B5, B4
+- **contract testing**: B4
+- **cors**: B1
+- **couchbase**: B3
+- **cqrs**: B4
+- **creational patterns**: ALL
+- **crewai**: B1
+- **csr**: B5
+- **csrf protection**: B1
+- **ctr**: B5, B4
+- **cuped**: B5
+- **customer segmentation**: B5
+- **cypher**: B6
+- **cypress**: B5
+- **dags (causal)**: B5
+- **dagster**: B3
+- **dash**: B5
+- **data cataloging**: B3
+- **data lakes**: B3
+- **data lineage**: B3
+- **data quality monitoring**: B3
+- **data vault 2.0**: B3
+- **databricks**: B3
+- **datadog**: B10
+- **datahub**: B3
+- **dbt**: B3
+- **ddd**: B1
+- **deep & cross networks**: B5
+- **deepseek**: B1, B2
+- **deepspeed**: B2
+- **deequ**: B3
+- **delta lake**: B3
+- **dependency parsing**: B6
+- **detectron2**: B7
+- **dialog state tracking**: B8
+- **did**: B5
+- **diffusion models**: B9
+- **dimensional modeling**: B3
+- **distributed caching**: B1, B4
+- **distributed locking**: B4
+- **distributed tracing**: B1, B10
+- **distributions**: B5
+- **django**: B4
+- **dlq**: B3, B4
+- **docker**: B1, B3, B7
+- **document chunking**: B6
+- **documentdb**: B3
+- **dowhy**: B5
+- **dp**: B4, B10
+- **dpo**: B2
+- **dr**: B1, B3
+- **dry**: ALL
+- **dsa**: B4, B7, B10
+- **dynamodb**: B3
+- **dynatrace**: B10
+- **e2e**: B5
+- **ebpf**: B10
+- **ecs**: B1
+- **eda**: B5
+- **elasticsearch**: B3, B4, B7
+- **elk**: B4, B10
+- **epoll**: B10
+- **event sourcing**: B4
+- **event-driven architecture**: B1, B4
+- **exactly-once**: B4
+- **exponential smoothing**: B5
+- **express.js**: B4
+- **f1-score**: B2, B7
+- **face recognition**: B7
+- **fact and dimension tables**: B3
+- **factor analysis**: B5
+- **faiss**: B5
+- **fastapi**: B1
+- **feature extraction**: B7
+- **feature flags**: B1
+- **few-shot prompting**: B2, B8
+- **flashattention**: B2
+- **flask**: B4
+- **flink**: B3, B4
+- **flutter**: B5
+- **flux**: B9
+- **fsdp**: B2
+- **function calling**: B1, B8
+- **gans**: B9
+- **gcp**: B1, B3
+- **gcs**: B3, B6
+- **gensim**: B6
+- **git**: ALL
+- **git-flow**: ALL
+- **github**: ALL
+- **github actions**: B1
+- **gitlab**: ALL
+- **gitlab ci/cd**: B1
+- **go gin**: B4
+- **google gemini api**: B1, B2
+- **grafana**: B1, B10
+- **graph algorithms**: B4, B7, B10
+- **graphdb**: B6
+- **graphql**: B4
+- **great expectations**: B3
+- **greedy**: B4, B10
+- **grpc**: B4
+- **ha**: B1, B4
+- **hadoop**: B3
+- **hallucination mitigation**: B6, B8
+- **hash table**: B4, B10
+- **hbase**: B3
+- **heap**: B4, B10
+- **helm**: B1, B7
+- **horovod**: B2
+- **hudi**: B3
+- **hugging face hub**: B2
+- **hugging face transformers**: B2
+- **hybrid search**: B5, B6
+- **hypothesis testing**: B5
+- **iceberg**: B3
+- **idempotency**: B1, B4
+- **image classification**: B7
+- **image segmentation**: B7
+- **indexing (b-tree,gin,gist)**: B3
+- **influxdb**: B7
+- **instructor**: B6
+- **integration testing**: ALL
+- **intent classification**: B8
+- **iou**: B7
+- **ipc**: B10
+- **isolation forest**: B4, B5
+- **iv**: B5
+- **jaeger**: B4, B10
+- **jenkins**: B1
+- **jest**: B1, B5
+- **jetpack compose**: B5
+- **jira**: ALL
+- **jmeter**: B4, B5
+- **junit**: B4
+- **jwt**: B1
+- **k6**: B4, B5
+- **k8s**: B1, B7
+- **kafka**: B3, B4
+- **kanban**: ALL
+- **kiss**: ALL
+- **knowledge distillation**: B2
+- **kotlin**: B5
+- **kqueue**: B10
+- **kustomize**: B1
+- **langchain**: B1, B6, B8, B9, B10
+- **langgraph**: B1, B8, B10
+- **leaky bucket**: B1, B4
+- **learning-to-rank**: B5
+- **linear**: ALL
+- **linear regression**: B5
+- **linked list**: B4, B10
+- **linux internals**: B10
+- **llamaindex**: B1, B6
+- **lm studio**: B2
+- **load balancing**: B1, B4
+- **localstorage**: B5
+- **locust**: B4, B5
+- **logistic regression**: B5
+- **looker**: B5
+- **lora**: B2
+- **lstm**: B2, B9
+- **luigi**: B3
+- **mae**: B5
+- **mahalanobis distance**: B4
+- **map**: B5
+- **map (cv)**: B7
+- **mapreduce**: B3
+- **material-ui**: B5
+- **matplotlib**: B5
+- **matrix factorization**: I, B5
+- **mcmc**: B5, B9
+- **mediapipe**: B7
+- **megatron-lm**: B2
+- **memcached**: B5
+- **memory management**: B10
+- **meta llama**: B1, B2
+- **metrics**: B1, B10
+- **microservices**: B1, B4
+- **midjourney**: B9
+- **milvus**: B5
+- **minio**: B3
+- **mistral ai**: B1, B2
+- **mobile app lifecycle**: B5
+- **mocha**: B4, B5
+- **mockito**: B4
+- **model pruning**: B2
+- **modern data stack**: B3
+- **mongodb**: B6
+- **monolithic**: B1, B4
+- **monorepos**: B1
+- **multi-agent systems**: B1
+- **multi-armed bandits**: B5, B4
+- **multi-region failover**: B1, B4
+- **multi-tenancy**: B1, B3
+- **multithreading**: B4, B10
+- **multivariate regression**: B5
+- **mutation testing**: B5
+- **mvt**: B5
+- **mysql**: B3
+- **ndcg**: B5
+- **neo4j**: B6
+- **neptune**: B6
+- **ner**: B6, B8
+- **nestjs**: B4
+- **neuralprophet**: B5
+- **new relic**: B10
+- **next.js**: B5
+- **nltk**: B6
+- **notion**: ALL
+- **novelty effects**: B5
+- **oauth2**: B1
+- **object detection**: B7
+- **objective-c**: B5
+- **ocr**: B6, B7
+- **oidc**: B1
+- **ollama**: B1, B2
+- **one-class svm**: B4
+- **onnx runtime**: B2, B7
+- **ood**: ALL
+- **openai api**: B1, B2
+- **openapi/swagger**: B1
+- **opencv**: B7
+- **opensearch**: B5, B7
+- **openvino**: B2, B7
+- **oracle**: B3
+- **orc**: B3
+- **otel**: B1, B10
+- **output parsing**: B1, B6
+- **p-values**: B5
+- **parquet**: B3
+- **pca**: B5
+- **peft**: B2
+- **perplexity**: B2
+- **pgvector**: B1, B5
+- **pinecone**: B5
+- **pipeline parallelism**: B2
+- **playwright**: B5
+- **plotly**: B5
+- **podman**: B1
+- **posix threads**: B10
+- **postgresql**: B1, B3
+- **power bi**: B5
+- **precision-recall**: B2
+- **prefect**: B3
+- **primacy effects**: B5
+- **prometheus**: B1, B10
+- **prompt engineering**: B1, B2, B8
+- **prompt tuning**: B2
+- **propensity modeling**: B5
+- **prophet**: B5
+- **protobuf**: B3, B4
+- **protobuf (api)**: B3, B4
+- **psm**: B5
+- **pub-sub**: B1, B4
+- **pulsar**: B4
+- **pulumi**: B1
+- **push notifications**: B5
+- **pwa**: B5
+- **pydantic**: B1, B6, B8
+- **pymc**: B5, B9
+- **pyspark**: B3
+- **pytest**: ALL
+- **pytorch lightning**: B2
+- **qdrant**: B5
+- **qlora**: B2
+- **quasi-experiments**: B5
+- **query execution plans**: B3
+- **queue**: B4, B10
+- **rabbitmq**: B4
+- **rag**: B1, B5, B6, B8
+- **rasa**: B8
+- **rate limiting**: B1, B4
+- **ray**: B2
+- **ray serve**: B2
+- **rbac**: B1, B4
+- **rca**: B10
+- **rdd**: B5
+- **react**: B1, B5
+- **react native**: B5
+- **recommender systems**: B5
+- **recursion**: B4, B10
+- **redis**: B1, B4, B5
+- **redis insight**: B1
+- **redis pub/sub**: B1, B4
+- **redshift**: B3
+- **redux**: B5
+- **reinforcement learning**: B5, B4
+- **rest**: ALL
+- **retrospectives**: ALL
+- **rfcs**: B1
+- **rlhf**: B2
+- **rmse**: B5
+- **rnns**: B2, B9
+- **roc-auc**: B2
+- **rouge**: B2
+- **ruby on rails**: B4
+- **s3**: B3
+- **safe**: ALL
+- **saml**: B1
+- **sample size estimation**: B5
+- **scd 1/2/3**: B3
+- **schema evolution**: B3
+- **schema registry**: B3
+- **scrum**: ALL
+- **scrumban**: ALL
+- **seaborn**: B5
+- **selenium**: B5
+- **sem (causal)**: B5
+- **semantic caching**: B1, B5
+- **semantic caching (cache)**: B1, B5
+- **semantic search**: B5, B6
+- **semver**: ALL
+- **sentence transformers**: B5, B8
+- **sentiment analysis**: B8
+- **sequential testing**: B5
+- **service workers**: B5
+- **sessionstorage**: B5
+- **sft**: B2
+- **shared memory**: B10
+- **shiny**: B5
+- **sla**: B1, B4
+- **sli**: B1
+- **slo**: B1
+- **snowflake**: B3
+- **snowflake schema**: B3
+- **soap**: B4
+- **soda**: B3
+- **solid**: ALL
+- **sorting/searching**: B4, B10
+- **spacy**: B6
+- **spanner**: B3
+- **spark**: B3
+- **spark streaming**: B3
+- **spinnaker**: B1
+- **split testing**: B5
+- **splunk**: B10
+- **spring boot**: B4
+- **sprint planning**: ALL
+- **sql server**: B3
+- **sqs/sns**: B4
+- **srm detection**: B5
+- **sse**: B5
+- **ssg**: B5
+- **ssr**: B5
+- **stack**: B4, B10
+- **star schema**: B3
+- **statistical power**: B5
+- **step functions**: B3
+- **story point estimation**: ALL
+- **streamlit**: B5
+- **structural patterns**: ALL
+- **structural validation**: B6
+- **swift**: B5
+- **swiftui**: B5
+- **synapse**: B3
+- **synthetic controls**: B5
+- **synthetic data generation**: B9
+- **syscalls**: B10
+- **system prompts**: B1, B8
+- **systemd**: B10
+- **t-sne**: B5
+- **t-test**: B5
+- **tableau**: B5
+- **tailwindcss**: B5
+- **tdd**: B1, B4, B5
+- **tdds**: B1
+- **technical debt management**: ALL
+- **tekton**: B1
+- **tensor parallelism**: B2
+- **tensorrt**: B2
+- **terraform**: B1
+- **terragrunt**: B1
+- **tgi**: B2
+- **time-series forecasting**: B5
+- **timescaledb**: B7
+- **token bucket**: B1, B4
+- **tokenization**: B2, B6
+- **tool usage**: B1, B8, B10
+- **torchserve**: B2
+- **torchvision**: B2, B7
+- **transformer internals**: B2
+- **trello**: ALL
+- **triton inference server**: B2
+- **trunk-based**: ALL
+- **two-tower embedding networks**: B5, B4
+- **typescript**: B1, B5
+- **umap**: B5
+- **unit testing**: ALL
+- **variance reduction**: B5
+- **velocity tracking**: ALL
+- **video processing**: B7
+- **vision-language models**: B6, B7
+- **vite**: B1, B5
+- **vllm**: B2
+- **vllm inference**: B2
+- **voiceflow**: B8
+- **vue.js**: B7
+- **weaviate**: B5, B6
+- **webhooks**: B1, B4
+- **webpack**: B5
+- **websockets**: B5, B8
+- **websockets (fs)**: B5, B8
+- **weight quantization**: B2
+- **wiremock**: B4
+- **word embeddings**: B6
+- **xcode**: B5
+- **xss prevention**: B1
+- **yagni**: ALL
+- **yolo**: B7
+- **zero-downtime**: B1
+- **zipkin**: B4, B10
+- **zustand**: B5
