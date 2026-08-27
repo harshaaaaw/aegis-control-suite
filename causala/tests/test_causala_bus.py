@@ -5,7 +5,6 @@ import tempfile
 
 from aegis.backbone import ControlEvent, EventBus, reset_registry
 
-from causa import Causala
 from causa.service import CausalaSubsystem
 
 

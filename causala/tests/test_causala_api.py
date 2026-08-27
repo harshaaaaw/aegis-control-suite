@@ -1,15 +1,10 @@
 """Tests for CAUSALA HTTP API + anti-slop gate (gaps C6, C7)."""
 from __future__ import annotations
 
-import os
-import tempfile
-from pathlib import Path
-
+from aegis.security import make_token
 from fastapi.testclient import TestClient
 
-from aegis.security import make_token
 from causa.server import get_app
-
 
 SECRET = "0" * 32  # 32-byte floor
 

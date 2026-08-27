@@ -19,7 +19,7 @@ def _boot(spine):
 
 def test_all_ten_subsystems_register():
     spine = Spine(SpineConfig(db_path=":memory:", jwt_secret="x", require_auth=False))
-    bus, ctrl = _boot(spine)
+    _bus, ctrl = _boot(spine)
     names = {s.name for s in ctrl.subsystems}
     assert {"ship_gate", "swapwatch", "roi_attest", "governed_memory",
             "contract_intel", "twin_truth", "causal_decisions",

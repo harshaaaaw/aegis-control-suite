@@ -4,8 +4,6 @@ RED first: these assert the new behavior we will build.
 """
 from __future__ import annotations
 
-import time
-
 from causa import Causala
 
 

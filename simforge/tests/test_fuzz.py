@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import random
 
-from simforge import Scenario, run_scenario, to_record, from_record
+from simforge import Scenario, from_record, run_scenario, to_record
 from simforge.forge import forge_case
 
 KINDS = ["inject_noise", "drop_field", "extreme_value", "adversarial_prompt"]
@@ -106,25 +106,27 @@ def test_fuzz_idempotency_across_random_scenarios():
     multi = {k: v for k, v in corpus.items() if len(v) >= 2}
     assert len(multi) >= 10, f"not enough collisions: {len(multi)}"
 
-    for (tid, sid, seed), _hits in multi.items():
-        run_id, af, sc = _run_for_tenant(rng, tid, sid, seed)
-        # triple-repeat to prove idempotency
-        for _ in range(2):
-            rid2, af2, sc2 = _run_for_tenant(rng, tid, sid, seed)
-            assert rid2 == run_id, f"non-idempotent {tid}/{sid}/{seed}"
-            assert af2 == af
-            assert sc2 == sc
-        assert sc >= 1, f"no steps for {tid}/{sid}/{seed}"
-        assert af >= 0
-
-        # Forge on the first run produces a well-formed case.
+    for (tid, sid, seed) in multi:
+        # Build the scenario ONCE and reuse for all 3 runs so "same seed"
+        # means "same scenario" (the engine is deterministic on identical input).
         scen = _rand_scenario(rng, tid, sid, seed)
 
         def agent(obs, ctx):
             return _demo_agent(obs, ctx)
 
-        run2 = run_scenario(scen, agent, tid)
-        case = forge_case(run2, tid)
+        run = run_scenario(scen, agent, tid)
+        run_id, af, sc = run.run_id, run.asserts_failed, len(run.steps)
+        # triple-repeat to prove idempotency
+        for _ in range(2):
+            run_r = run_scenario(scen, agent, tid)
+            assert run_r.run_id == run_id, f"non-idempotent {tid}/{sid}/{seed}"
+            assert run_r.asserts_failed == af
+            assert len(run_r.steps) == sc
+        assert sc >= 1, f"no steps for {tid}/{sid}/{seed}"
+        assert af >= 0
+
+        # Forge produces a well-formed case.
+        case = forge_case(run, tid)
         assert case.case_id.startswith("eval_")
         assert tid in case.input
         assert sid in case.input
@@ -135,11 +137,11 @@ def test_fuzz_idempotency_across_random_scenarios():
             assert len(case.must_not_contain) == af
 
         # Round-trip preserves the run.
-        rt = from_record(to_record(run2))
-        assert rt.run_id == run2.run_id
-        assert rt.seed == run2.seed
-        assert rt.asserts_failed == run2.asserts_failed
-        assert len(rt.steps) == len(run2.steps)
+        rt = from_record(to_record(run))
+        assert rt.run_id == run.run_id
+        assert rt.seed == run.seed
+        assert rt.asserts_failed == run.asserts_failed
+        assert len(rt.steps) == len(run.steps)
 
 
 def test_fuzz_perturbation_coverage():

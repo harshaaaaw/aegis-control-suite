@@ -1,8 +1,6 @@
 """Shared pytest fixtures: isolated SQLite spine + temp run-replay dir."""
 from __future__ import annotations
 
-import os
-import tempfile
 from pathlib import Path
 
 import pytest
@@ -31,7 +29,6 @@ def spine(tmp_path: Path) -> Spine:
 @pytest.fixture
 def client(tmp_path: Path):
     """A FastAPI TestClient wired to a temp Spine + state dir."""
-    from fastapi import FastAPI
     from aegis.main import build_app
 
     db = tmp_path / "aegis.db"
@@ -41,6 +38,18 @@ def client(tmp_path: Path):
     from fastapi.testclient import TestClient
     with TestClient(app) as c:
         yield c
+
+
+@pytest.fixture
+def verdict_checker():
+    """Return a helper that independently fetches + verifies a verdict via the API."""
+    def _check(client, verdict_id: str, token: str) -> tuple[bool, dict | None]:
+        r = client.get(f"/api/v1/verdicts/{verdict_id}",
+                       headers={"Authorization": f"Bearer {token}"})
+        if r.status_code != 200:
+            return False, None
+        return r.json()["signature_valid"], r.json()
+    return _check
 
 
 def is_verdict_valid(client, verdict_id: str, token: str) -> tuple[bool, dict | None]:

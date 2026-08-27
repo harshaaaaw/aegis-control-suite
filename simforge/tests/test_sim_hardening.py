@@ -8,14 +8,14 @@ crashing agent breaks the forge, perturbations pass through unchanged).
 from __future__ import annotations
 
 import os
-import tempfile
 
 os.environ["AEGIS_JWT_SECRET"] = "0" * 32
 
-from simforge import Scenario, SimRun, from_record, run_scenario, to_record
-from simforge.forge import ForgeRoom, forge_case
+from starlette.testclient import TestClient
+
+from simforge import Scenario, from_record, run_scenario, to_record
+from simforge.forge import forge_case
 from simforge.server import get_app, register_agent
-from starlette.testclient import TestClient  # noqa: N817
 
 # ---------------------------------------------------------------------------
 # Idempotency
@@ -27,7 +27,7 @@ def test_idempotent_run():
     scen = Scenario(scenario_id="idem", agent_under_test="demo", seed=1,
                     perturbations=[{"kind": "inject_noise", "field": "input"}])
 
-    def agent(obs, ctx):  # noqa: D103
+    def agent(obs, ctx):
         return {"decision": "allow"}
 
     run_a = run_scenario(scen, agent, "acme")
@@ -208,7 +208,8 @@ def test_weak_secret_rejected():
     """SIMFORGE reuses AEGIS's 32-byte secret floor. A weak secret must not
     boot the app (real root cause, not a soft log)."""
     import pytest
-    with pytest.raises(Exception):
+    from aegis.security import WeakSecretError
+    with pytest.raises(WeakSecretError):
         get_app(":memory:", jwt_secret="short", enable_rate_limit=False)
 
 
@@ -227,7 +228,7 @@ def test_missing_bearer_returns_401():
 def test_bad_bearer_returns_403():
     app = get_app(":memory:", jwt_secret="0" * 32, enable_rate_limit=False)
     from aegis.security import make_token
-    wrong = make_token(tenant_id="x", sub="demo", secret="WRONG-SECRET-12345678901234567")
+    wrong = make_token(tenant_id="x", sub="demo", secret="WRONG-SECRET-1234567890ABCDEFGHZ")
     c = TestClient(app)
     r = c.post("/api/v1/sim/run", json={"scenario_id": "x", "agent_under_test": "demo",
                                         "perturbations": [], "seed": 0},
@@ -264,18 +265,20 @@ def test_registered_agent_run_and_forge():
     token = make_token(tenant_id="acme", sub="demo", secret="0" * 32)
     c = TestClient(app)
 
-    r = c.post("/api/v1/sim/run", json={"scenario_id": "api_s1", "agent_under_test": "demo",
-                                        "perturbations": [{"kind": "inject_noise", "field": "input"}],
-                                        "seed": 0, "baseline_observation": {"input": "x"}},
-               headers={"Authorization": f"Bearer {token}"})
+    r = c.post("/api/v1/sim/run", json={
+        "scenario_id": "api_s1", "agent_under_test": "demo",
+        "perturbations": [{"kind": "inject_noise", "field": "input"}],
+        "seed": 0, "baseline_observation": {"input": "x"}},
+        headers={"Authorization": f"Bearer {token}"})
     assert r.status_code == 200
     assert r.json()["run_id"].startswith("sim_")
     assert r.json()["asserts_failed"] == 0
 
-    r2 = c.post("/api/v1/sim/forge", json={"scenario_id": "api_s1", "agent_under_test": "demo",
-                                          "perturbations": [{"kind": "inject_noise", "field": "input"}],
-                                          "seed": 0, "baseline_observation": {"input": "x"}},
-                headers={"Authorization": f"Bearer {token}"})
+    r2 = c.post("/api/v1/sim/forge", json={
+        "scenario_id": "api_s1", "agent_under_test": "demo",
+        "perturbations": [{"kind": "inject_noise", "field": "input"}],
+        "seed": 0, "baseline_observation": {"input": "x"}},
+        headers={"Authorization": f"Bearer {token}"})
     assert r2.status_code == 200
     assert r2.json()["run_id"].startswith("sim_")
     assert r2.json()["case_id"].startswith("eval_")

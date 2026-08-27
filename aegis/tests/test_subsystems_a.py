@@ -5,27 +5,32 @@ to the Spine (externalized, tamper-evident). Tests are behavioral + failure-path
 """
 from __future__ import annotations
 
-from aegis.backbone import ControlEvent, EventBus
-from aegis.control import swapwatch, roi_attest, governed_memory
+from aegis.backbone import EventBus
+from aegis.control import governed_memory, roi_attest, swapwatch
 
 
 def test_swapwatch_flags_behavior_drift(tmp_state):
     """When a live run diverges from its certified baseline, SwapWatch raises an alert."""
-    from run_replay import Recorder, RunMeta, StepKind, Replayer
+    from run_replay import Recorder, Replayer, RunMeta, StepKind
     run_id = "run-drift-1"
     base = Recorder(state_dir=str(tmp_state), meta=RunMeta(run_id=run_id, agent_name="pricer"))
-    base.step(StepKind.MODEL_CALL, "planner", inp={"sku": "A"}, out={"price": 10}, state={"price": 10}, wall_ms=5)
-    meta, events = base.load_run(base.path)
+    base.step(StepKind.MODEL_CALL, "planner", inp={"sku": "A"}, out={"price": 10},
+              state={"price": 10}, wall_ms=5)
+    _meta, events = base.load_run(base.path)
     baseline = Replayer(events).verify()
 
     # live run produces a different price (behavior drift)
     live = Recorder(state_dir=str(tmp_state), meta=RunMeta(run_id=run_id, agent_name="pricer"))
-    live.step(StepKind.MODEL_CALL, "planner", inp={"sku": "A"}, out={"price": 999}, state={"price": 999}, wall_ms=5)
+    live.step(StepKind.MODEL_CALL, "planner", inp={"sku": "A"}, out={"price": 999},
+              state={"price": 999}, wall_ms=5)
 
     bus = EventBus()
     sw = swapwatch.SwapWatch(state_dir=str(tmp_state))
     sw.register(bus, None)
-    alert = sw.check_drift(run_id, baseline_digests={"price": "10"}, live_outputs={"price": "999"})
+    # precondition: the recorded baseline replayed cleanly (no tamper/corruption)
+    assert baseline.digests_match is True
+    alert = sw.check_drift(run_id, baseline_digests={"price": "10"},
+                           live_outputs={"price": "999"})
     assert alert.drifted is True
     assert "price" in alert.fields
 

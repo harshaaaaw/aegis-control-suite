@@ -9,8 +9,6 @@ and combines them into one signed verdict (verdict_id, decision, evidence refs).
 """
 from __future__ import annotations
 
-import pytest
-
 from aegis.gate import GateRequest, ShipGate
 
 
@@ -18,7 +16,8 @@ def test_gate_blocks_on_tampered_run(spine, tmp_state):
     from run_replay import Recorder, RunMeta, StepKind
     run_id = spine.begin_run(agent_name="deploy", tenant_id="acme", idempotency_key="g1")
     rec = Recorder(state_dir=str(tmp_state), meta=RunMeta(run_id=run_id, agent_name="deploy"))
-    rec.step(StepKind.MODEL_CALL, "planner", inp={"x": 1}, out={"y": 2}, state={"x": 1}, wall_ms=5.0)
+    rec.step(StepKind.MODEL_CALL, "planner", inp={"x": 1}, out={"y": 2},
+             state={"x": 1}, wall_ms=5.0)
 
     gate = ShipGate(spine, state_dir=str(tmp_state))
     # point the gate at a run whose events are intact -> eval + shield pass
@@ -34,7 +33,6 @@ def test_gate_blocks_on_tampered_run(spine, tmp_state):
 
 def test_gate_blocks_adversarial_tool_result(spine, tmp_state):
     """A candidate whose tool result trips the shield must BLOCK."""
-    from agent_sentinel import Sentinel, ToolCall, ToolResult, TurnContext
     from run_replay import Recorder, RunMeta, StepKind
 
     run_id = spine.begin_run(agent_name="deploy", tenant_id="acme", idempotency_key="g2")

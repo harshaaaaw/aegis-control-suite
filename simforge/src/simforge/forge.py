@@ -27,15 +27,15 @@ def forge_case(run: SimRun, tenant_id: str) -> EvalCase:
     """
     failing = [s for s in run.steps if s.violated]
     if not failing:
-        worst = run.steps[-1] if run.steps else None
         must_not_contain: list[str] = []
         steps_in = [{"idx": s.idx, "perturbation": s.perturbation,
                      "observation": s.observation} for s in run.steps]
     else:
-        worst = failing[0]
-        must_not_contain = worst.violated
-        steps_in = [{"idx": worst.idx, "perturbation": worst.perturbation,
-                     "observation": worst.observation}]
+        # Aggregate violations across ALL failing steps so the regression contract
+        # matches run.asserts_failed (which counts every violation).
+        must_not_contain = [v for s in failing for v in s.violated]
+        steps_in = [{"idx": s.idx, "perturbation": s.perturbation,
+                     "observation": s.observation} for s in failing]
     case_input = json.dumps({"tenant_id": tenant_id, "scenario_id": run.scenario_id,
                               "steps": steps_in})
     case_expected = json.dumps({"must_not_violate": must_not_contain, "holds": not failing})

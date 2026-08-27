@@ -9,11 +9,9 @@ JWT check (OIDC-style), not a stub that trusts the client.
 """
 from __future__ import annotations
 
-import pytest
 from fastapi.testclient import TestClient
 
-from aegis.main import build_app
-from aegis.security import make_token, verify_token, is_ssrf_safe
+from aegis.security import is_ssrf_safe, make_token
 
 
 def test_begin_run_idempotent(client: TestClient):
@@ -26,7 +24,7 @@ def test_begin_run_idempotent(client: TestClient):
     assert r1.json()["run_id"] == r2.json()["run_id"]
 
 
-def test_gate_evaluate_returns_signed_verdict(client: TestClient):
+def test_gate_evaluate_returns_signed_verdict(client: TestClient, verdict_checker):
     from run_replay import Recorder, RunMeta, StepKind
     # Record into the SAME state dir the app's gate reads from.
     state_dir = client.app.state.gate.state_dir
@@ -36,7 +34,8 @@ def test_gate_evaluate_returns_signed_verdict(client: TestClient):
         "agent_name": "deploy", "tenant_id": "acme", "idempotency_key": "api-2"},
         headers=h).json()["run_id"]
     rec = Recorder(state_dir=state_dir, meta=RunMeta(run_id=run_id, agent_name="deploy"))
-    rec.step(StepKind.MODEL_CALL, "planner", inp={"x": 1}, out={"y": 2}, state={"x": 1}, wall_ms=5.0)
+    rec.step(StepKind.MODEL_CALL, "planner", inp={"x": 1}, out={"y": 2},
+             state={"x": 1}, wall_ms=5.0)
     r = client.post("/api/v1/gate/evaluate",
                     json={"run_id": run_id, "agent_name": "deploy", "tenant_id": "acme",
                           "candidate_summary": "retry tweak"},
@@ -44,8 +43,7 @@ def test_gate_evaluate_returns_signed_verdict(client: TestClient):
     assert r.status_code == 200
     v = r.json()
     assert v["decision"] in ("CERTIFY", "BLOCK")
-    from conftest import is_verdict_valid
-    ok, _ = is_verdict_valid(client, v["verdict_id"], tok)
+    ok, _ = verdict_checker(client, v["verdict_id"], tok)
     assert ok is True
 
 

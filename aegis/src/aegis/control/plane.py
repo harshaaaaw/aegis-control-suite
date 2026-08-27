@@ -9,7 +9,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from ..backbone import EventBus, Subsystem, register_subsystem
+from ..backbone import ControlEvent, EventBus, Subsystem, register_subsystem
+from ..security import get_logger
 from .autonomous_ops import AutonomousOps
 from .causal_decisions import CausalDecisions
 from .contract_intel import ContractIntel
@@ -18,6 +19,8 @@ from .roi_attest import ROIAttest
 from .sim_rl_factory import SimRLFactory
 from .swapwatch import SwapWatch
 from .twin_truth import TwinTruth
+
+log = get_logger("aegis.plane")
 
 
 class Panes:
@@ -88,17 +91,32 @@ class _GateRoom:
     def __init__(self, spine, state_dir: str):
         from ..gate import ShipGate
         self._gate = ShipGate(spine, state_dir=state_dir)
+        self._golden: list[dict] = []  # sim-forged regression cases consumed from SIMFORGE
 
     def register(self, bus: EventBus, spine) -> None:
         register_subsystem(self)
+        # Consume SIMFORGE's forged golden cases so the Ship Gate's eval set is
+        # closed-loop: production sim failures become regression guards.
+        bus.subscribe("sim_forge", self.handle_sim_certified)
 
     def handle(self, event) -> None:
         # The gate room reacts to gate_certified (no-op here; verdicts are
         # created via evaluate()). Present so it satisfies the Subsystem protocol.
         return None
 
-    def evaluate(self, run_id, agent_name, tenant_id, candidate_summary):
-        from ..gate import GateRequest
-        return self._gate.evaluate(GateRequest(run_id=run_id, agent_name=agent_name,
-                                                tenant_id=tenant_id,
-                                                candidate_summary=candidate_summary))
+    def handle_sim_certified(self, event: ControlEvent) -> None:
+        # Record the forged golden case; the Ship Gate consults this set before
+        # certifying a deploy (a case that a prior sim failed must pass now).
+        self._golden.append({
+            "case_id": event.payload.get("case_id"),
+            "run_id": event.payload.get("run_id"),
+            "tenant_id": event.tenant_id,
+            "asserts_failed": event.payload.get("asserts_failed"),
+        })
+        log.info("sim_golden_consumed", extra={"case_id": event.payload.get("case_id"),
+                                               "tenant": event.tenant_id})
+
+    def golden_cases(self, tenant_id: str | None = None) -> list[dict]:
+        if tenant_id is None:
+            return list(self._golden)
+        return [g for g in self._golden if g["tenant_id"] == tenant_id]

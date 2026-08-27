@@ -8,7 +8,13 @@ failure corpus. Autonomous Ops enforces graduated-trust promotion.
 from __future__ import annotations
 
 from aegis.backbone import EventBus
-from aegis.control import contract_intel, twin_truth, causal_decisions, sim_rl_factory, autonomous_ops
+from aegis.control import (
+    autonomous_ops,
+    causal_decisions,
+    contract_intel,
+    sim_rl_factory,
+    twin_truth,
+)
 
 
 def test_contract_intel_flags_scope_creep(tmp_state):

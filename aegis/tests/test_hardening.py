@@ -10,13 +10,12 @@ Real behavioral checks, no assumptions:
 from __future__ import annotations
 
 import json
-import os
 import tempfile
 
 import pytest
 
-from aegis.gate import GateRequest, ShipGate, Verdict
-from aegis.security import WeakSecretError, require_strong_secret, make_token
+from aegis.gate import GateRequest, ShipGate
+from aegis.security import WeakSecretError, require_strong_secret
 from aegis.spine import Spine, SpineConfig
 
 
@@ -57,11 +56,13 @@ def test_verdict_ledger_is_hash_chained(tmp_state):
     assert ok is True and rec is not None
     # now tamper a prior line in the ledger and confirm chain breaks
     ledger = f"{tmp_state}/verdicts.jsonl"
-    lines = open(ledger, encoding="utf-8").read().splitlines()
+    with open(ledger, encoding="utf-8") as fh:
+        lines = fh.read().splitlines()
     tampered = json.loads(lines[0])
     tampered["decision"] = "CERTIFY" if tampered["decision"] != "CERTIFY" else "BLOCK"
     lines[0] = json.dumps(tampered, sort_keys=True)
-    open(ledger, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+    with open(ledger, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines) + "\n")
     ok2, _ = gate.verify_verdict(v.verdict_id, tenant_id="acme")
     assert ok2 is False
 
@@ -88,6 +89,7 @@ def test_cli_certify_run(tmp_path, monkeypatch):
     run.write_text(_json.dumps({"idx": 0, "kind": "MODEL_CALL", "name": "planner",
                                  "in": {"x": 1}, "out": {"y": 2}, "state": {"x": 1}, "ms": 5}))
     from typer.testing import CliRunner
+
     from aegis.cli import app
     r = CliRunner().invoke(app, ["certify", str(run)])
     assert r.exit_code == 0, r.output
@@ -98,6 +100,7 @@ def test_cli_certify_run(tmp_path, monkeypatch):
 
 def test_cli_ssrf_guard():
     from typer.testing import CliRunner
+
     from aegis.cli import app
     r = CliRunner().invoke(app, ["ssrf", "http://169.254.169.254/latest"])
     assert r.exit_code == 0

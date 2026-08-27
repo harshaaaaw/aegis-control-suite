@@ -1,9 +1,7 @@
 """SIMFORGE tests: scenario execution, causal assertion, forge loop, resilience."""
 from __future__ import annotations
 
-import tempfile
-
-from simforge import Scenario, SimRun, from_record, run_scenario, to_record
+from simforge import Scenario, from_record, run_scenario, to_record
 from simforge.forge import ForgeRoom, forge_case
 
 

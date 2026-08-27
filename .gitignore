@@ -1,17 +1,25 @@
-# venv / caches
-.venv-aegis/
 __pycache__/
-*.egg-info/
+*.py[cod]
 .pytest_cache/
-.venv/
-
-# local data / secrets
+.mypy_cache/
+.ruff_cache/
+.coverage
+*.coverage
 *.db
 runs/
-aegis.db
+__chaos_state/
+__integ_state/
+__integ2/
+.probe_sentinel/
+jd_corpus/
+references/
+*.cov.json
+reqs_audit.txt
+nul
+*.egg-info/
+.venv/
+.venv-aegis/
+# stray artifacts
+roi.jsonl
 *.jsonl
-.env
-secrets.*
-
-# os
-.DS_Store
+lineassem_compare.html

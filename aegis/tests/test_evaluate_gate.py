@@ -13,13 +13,11 @@ import glob
 import re
 from pathlib import Path
 
-import pytest
-
-from evalforge import EvalCase, GoldenSet, EvalRunner
-
-from aegis.spine import Spine, SpineConfig
-from aegis.gate import GateRequest, ShipGate
+from evalforge import EvalCase, EvalRunner, GoldenSet
 from run_replay import Recorder, RunMeta, StepKind
+
+from aegis.gate import GateRequest, ShipGate
+from aegis.spine import Spine, SpineConfig
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src" / "aegis"
@@ -27,7 +25,7 @@ SRC = ROOT / "src" / "aegis"
 
 def _make_clean_run(gate_dir: str) -> str:
     spine = Spine(SpineConfig(db_path=":memory:", jwt_secret="eval", require_auth=False))
-    g = ShipGate(spine, state_dir=str(gate_dir))
+    ShipGate(spine, state_dir=str(gate_dir))  # created to initialize the state dir
     run_id = spine.begin_run(agent_name="deploy", tenant_id="acme", idempotency_key="clean")
     rec = Recorder(state_dir=str(gate_dir), meta=RunMeta(run_id=run_id, agent_name="deploy"))
     rec.step(StepKind.MODEL_CALL, "planner", inp={"x": 1}, out={"y": 2}, state={"x": 1}, wall_ms=5)

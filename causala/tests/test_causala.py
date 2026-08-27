@@ -9,7 +9,7 @@ RED first: these assert the behavior we will build.
 """
 from __future__ import annotations
 
-from causa import Causala, CausalClaim
+from causa import Causala
 
 
 def test_ingest_compiles_causal_edge_with_provenance(tmp_path):

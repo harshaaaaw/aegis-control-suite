@@ -1,0 +1,52 @@
+name: quality-gate
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        run: pipx install uv
+
+      - name: Create venv + install dev tools
+        run: |
+          uv venv .venv --python ${{ matrix.python-version }}
+          uv pip install --python .venv/bin/python ruff mypy bandit pytest pytest-asyncio httpx
+
+      - name: Install product packages (local siblings, no-deps to avoid PyPI lookup)
+        run: |
+          uv pip install --python .venv/bin/python --no-deps aegis/
+          uv pip install --python .venv/bin/python --no-deps causa/
+          uv pip install --python .venv/bin/python --no-deps simforge/
+
+      - name: Lint
+        run: |
+          .venv/bin/python -m ruff check aegis/src causala/src simforge/src
+
+      - name: Types (business logic)
+        run: |
+          .venv/bin/python -m mypy aegis/src/aegis --config-file aegis/pyproject.toml --no-error-summary
+          .venv/bin/python -m mypy src/causa --config-file causa/pyproject.toml --no-error-summary
+          .venv/bin/python -m mypy src/simforge --config-file simforge/pyproject.toml --no-error-summary
+
+      - name: Security (bandit)
+        run: |
+          .venv/bin/python -m bandit -r aegis/src/aegis causala/src/causa simforge/src/simforge -q
+
+      - name: Tests
+        run: |
+          .venv/bin/python -m pytest aegis/tests/ causala/tests/ simforge/tests/ tests/ -q

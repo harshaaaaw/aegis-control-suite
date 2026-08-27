@@ -2,11 +2,10 @@
 from __future__ import annotations
 
 import json
-import tempfile
-from pathlib import Path
 
 from aegis.gate import GateRequest, ShipGate
 from aegis.spine import Spine, SpineConfig
+
 from causa import Causala
 
 
@@ -31,7 +30,7 @@ def test_aegis_tenant_isolation_invariant(tmp_path):
 
 def test_causala_idempotency_invariant(tmp_path):
     c = Causala(str(tmp_path / "c.db"))
-    k = dict(cause="x", effect="y", confidence=0.8, source="s1", tenant_id="acme")
+    k = {"cause": "x", "effect": "y", "confidence": 0.8, "source": "s1", "tenant_id": "acme"}
     assert c.ingest_claim(**k) == c.ingest_claim(**k)
 
 

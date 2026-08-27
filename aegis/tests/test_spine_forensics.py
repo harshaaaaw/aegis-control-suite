@@ -18,7 +18,7 @@ def test_spine_records_step_and_verifies_intact(spine: Spine, tmp_state: Path):
     rec.step(StepKind.TOOL_CALL, "refund", inp={"order": 8123},
              out={"status": "ok"}, state={"refunded": True}, wall_ms=40.0)
 
-    meta, events = rec.load_run(rec.path)
+    _meta, events = rec.load_run(rec.path)
     res = Replayer(events).verify()
     assert res.digests_match is True, "history was tampered or corrupted"
     assert res.steps_replayed == 2
@@ -42,7 +42,8 @@ def test_spine_detects_tampered_run(spine: Spine, tmp_state: Path):
     """If an event's stored data is edited, verify() must name the corrupted step."""
     run_id = spine.begin_run(agent_name="support", tenant_id="acme", idempotency_key="tamper-1")
     rec = Recorder(state_dir=str(tmp_state), meta=RunMeta(run_id=run_id, agent_name="support"))
-    rec.step(StepKind.MODEL_CALL, "planner", inp={"x": 1}, out={"y": 2}, state={"x": 1}, wall_ms=5.0)
+    rec.step(StepKind.MODEL_CALL, "planner", inp={"x": 1}, out={"y": 2},
+             state={"x": 1}, wall_ms=5.0)
 
     # Simulate an attacker editing the JSONL on disk (altering output_data).
     lines = Path(rec.path).read_text(encoding="utf-8").splitlines()
