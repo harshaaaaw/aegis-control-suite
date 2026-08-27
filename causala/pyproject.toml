@@ -1,0 +1,29 @@
+[project]
+name = "causala"
+version = "0.1.0"
+description = "CAUSALA: causal-inference retrieval over a compiled causal knowledge layer."
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.6",
+    "sqlalchemy[asyncio]>=2.0",
+    "aiosqlite>=0.20",
+    "networkx>=3.0",
+    "aegis-control",
+]
+
+[project.scripts]
+causala = "causa.cli:app"
+
+[project.optional-dependencies]
+test = ["pytest>=8.0", "pytest-asyncio>=0.23", "httpx>=0.27"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
