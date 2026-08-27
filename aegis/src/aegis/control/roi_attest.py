@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -28,9 +29,16 @@ class ROIReport:
 class ROIAttest:
     name = "roi_attest"
 
-    def __init__(self, spine: Spine):
+    def __init__(self, spine: Spine | None = None, state_dir: str = ""):
         self.spine = spine
-        self._ledger = Path(spine.cfg.db_path).parent / "roi.jsonl"
+        # ledger lives in the externalized state dir, not coupled to spine.cfg
+        if state_dir:
+            self._ledger = Path(state_dir) / "roi.jsonl"
+        elif spine is not None:
+            self._ledger = Path(spine.cfg.db_path).parent / "roi.jsonl"
+        else:
+            # no spine, no state_dir: still operable with a temp ledger
+            self._ledger = Path(tempfile.gettempdir()) / "aegis-roi.jsonl"
 
     def register(self, bus: EventBus, spine) -> None:
         bus.subscribe(self.name, self.handle)

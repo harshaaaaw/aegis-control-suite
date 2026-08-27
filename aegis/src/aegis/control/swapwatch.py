@@ -57,6 +57,7 @@ class SwapWatch:
             detail=f"{len(drifted_fields)} field(s) diverged from certified baseline",
         )
         if alert.drifted:
+            Path(self._ledger).parent.mkdir(parents=True, exist_ok=True)
             with open(self._ledger, "a", encoding="utf-8") as f:
                 f.write(json.dumps({"run_id": run_id, "drift": drifted_fields}) + "\n")
         return alert

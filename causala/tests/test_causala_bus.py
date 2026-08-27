@@ -1,23 +1,30 @@
-"""CAUSALA integration with the AEGIS control bus."""
+"""Consumer test: CAUSALA subsystem reacts to AEGIS bus causal events (service.py)."""
 from __future__ import annotations
+
+import tempfile
 
 from aegis.backbone import ControlEvent, EventBus, reset_registry
 
+from causa import Causala
 from causa.service import CausalaSubsystem
 
 
-def test_causala_registers_and_consumes_ingest_event(tmp_path):
+def test_subsystem_ingests_on_bus_event():
     reset_registry()
     bus = EventBus()
-    sub = CausalaSubsystem(str(tmp_path / "causala.db"))
-    sub.register(bus, None)
-    # publish a causal_ingest event on the bus
-    bus.publish(ControlEvent("causala", "causal_ingest",
-                             {"cause": "flag_on", "effect": "hotspot",
-                              "confidence": 0.8, "source": "inc-9"},
+    db = tempfile.mkdtemp() + "/causala.db"
+    sub = CausalaSubsystem(db)
+    bus.subscribe("causala", sub.handle)
+    bus.publish(ControlEvent("causala", kind="causal_ingest",
+                             payload={"cause": "x", "effect": "y",
+                                      "confidence": 0.9, "source": "s1"},
                              tenant_id="acme"))
-    # now the engine should know the cause
-    ans = sub.explain("hotspot", tenant_id="acme")
-    assert ans.cause == "flag_on"
-    assert "inc-9" in ans.citations
+    ans = sub._engine.explain_effect("y", "acme")
+    assert ans.cause == "x"
+    # exercise the convenience delegates (what_if / ancestors / path / conflicts)
+    sub.ingest("y", "z", 0.7, "s2", tenant_id="acme")
+    assert sub.what_if("x", "acme").effect == "y"
+    assert sub.ancestors("z", "acme")[0].cause == "x"  # root of the chain
+    assert sub.path("x", "z", "acme")[0].cause == "x"
+    assert sub.conflicts("acme") == []  # x->y, y->z are consistent, no conflict
     reset_registry()

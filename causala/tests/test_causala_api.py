@@ -16,7 +16,7 @@ SECRET = "0" * 32  # 32-byte floor
 
 def _client(tmp_path):
     db = str(tmp_path / "api.db")
-    app = get_app(db, SECRET)
+    app = get_app(db, SECRET, enable_rate_limit=False)
     return TestClient(app)
 
 

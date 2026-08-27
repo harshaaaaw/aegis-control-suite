@@ -39,7 +39,9 @@ def _ephemeral() -> tuple[Spine, str]:
 
 
 def _load_run(path: str) -> list[dict]:
-    return [json.loads(l) for l in open(path, encoding="utf-8").read().splitlines() if l.strip()]
+    # Resolve so POSIX-style and Windows relative paths both work for consumers.
+    p = Path(path).expanduser().resolve()
+    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
 @app.command()

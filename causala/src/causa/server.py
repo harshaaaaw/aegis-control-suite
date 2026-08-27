@@ -20,7 +20,7 @@ from pathlib import Path
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
-from slowapi import Limiter
+from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 
@@ -52,16 +52,18 @@ class CausalaConfig:
         self.jwt_secret = jwt_secret
 
 
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter(key_func=get_remote_address, storage_uri="memory://")
 
 
-def get_app(db_path: str, jwt_secret: str) -> FastAPI:
+def get_app(db_path: str, jwt_secret: str, enable_rate_limit: bool = True) -> FastAPI:
     cfg = CausalaConfig(db_path=db_path, jwt_secret=jwt_secret)
     engine = Causala(cfg.db_path)
     app = FastAPI(title="CAUSALA", version="0.2.0")
+    # The decorators above bind to the module-global `limiter`; app.state.limiter
+    # MUST be that same instance or limits silently no-op. (slowapi invariant.)
+    limiter.enabled = enable_rate_limit
     app.state.limiter = limiter
-    app.add_exception_handler(RateLimitExceeded,
-                              lambda r, e: HTTPException(429, "rate limited"))
+    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
     def tenant_of(req: Request) -> str:
         auth = req.headers.get("Authorization", "")
